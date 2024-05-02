@@ -1,0 +1,27 @@
+{
+    "welcome":"Welcome",
+    "appName":"Pink Aid",
+    "email":"Email",
+    "password":"Password",
+    "confirmPass":"Confirm password",
+    "registration":"Registration",
+    "nameLabel":"Name",
+    "userRoles":"Select User Type",
+    "doctorLabel":"Doctor",
+    "doctorLabelDesc":"Can organise and approve teleconsultations",
+    "patientLabel":"Breast Cancer Patient",
+    "publicLabel": "Public",
+    "publicLabelDesc":"Can access health information and book teleconsultations",
+    "medicalIdlabel":"NSR number",
+    "personalInfoLabel":"Personal information",
+    "agreeLabel":"By signing in,I am agree with ",
+    "termAndCondition":"Term and Condition",
+    "verifyEmailLabel":"Verify your email address",
+    "sentEmailLabel":"We have sent email to your current email address",
+    "continueLabel":"Continue",
+    "resendLabel":"Resend Email"
+
+
+    
+    
+}
