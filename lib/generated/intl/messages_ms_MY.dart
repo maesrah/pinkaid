@@ -25,13 +25,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreeLabel": MessageLookupByLibrary.simpleMessage(
             "Dengan mendaftar,saya bersetuju dengan "),
         "appName": MessageLookupByLibrary.simpleMessage("Pink Aid"),
+        "communityLabel": MessageLookupByLibrary.simpleMessage("Komuniti"),
         "confirmPass":
             MessageLookupByLibrary.simpleMessage("Sahkan kata laluan"),
+        "consultationLabel": MessageLookupByLibrary.simpleMessage("Konsultasi"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Teruskan"),
         "doctorLabel": MessageLookupByLibrary.simpleMessage("Doktor"),
         "doctorLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Boleh mengatur dan meluluskan perundingan kesihatan atas talian"),
         "email": MessageLookupByLibrary.simpleMessage("Emel"),
+        "expertiseLabel":
+            MessageLookupByLibrary.simpleMessage("Kepakaran Anda Diperlukan"),
+        "helloLabel": MessageLookupByLibrary.simpleMessage("Hello"),
+        "joinLabel": MessageLookupByLibrary.simpleMessage(
+            "Sertai Komuniti Perbincangan Kanser Payudara Kami Hari Ini."),
         "medicalIdlabel": MessageLookupByLibrary.simpleMessage("nombor NSR"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("Nama"),
         "password": MessageLookupByLibrary.simpleMessage("Kata Laluan"),
@@ -45,8 +52,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "registration": MessageLookupByLibrary.simpleMessage("Pendaftaran"),
         "resendLabel":
             MessageLookupByLibrary.simpleMessage("Hantar emel kembali"),
+        "scheduleLabel": MessageLookupByLibrary.simpleMessage(
+            "Semak Janji Temu Konsultasi Anda"),
         "sentEmailLabel": MessageLookupByLibrary.simpleMessage(
             "Kami telah menghantar emel kepada akaun emel semasa anda"),
+        "sessionLabel": MessageLookupByLibrary.simpleMessage(
+            "Ada sesi konsultasi hari ini?"),
         "termAndCondition":
             MessageLookupByLibrary.simpleMessage("Terma dan Syarat"),
         "userRoles":

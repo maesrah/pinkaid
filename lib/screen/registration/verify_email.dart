@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinkaid/generated/l10n.dart';
+import 'package:pinkaid/screen/home/doctors_homepage.dart';
 import 'package:pinkaid/screen/login/login.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -34,11 +35,16 @@ class EmailVerifyPage extends StatelessWidget {
           child: Column(
             children: [
               const SizedBox(
-                height: kSpaceScreenPaddingLg,
+                height: 100,
               ),
-              const Icon(
-                Icons.mail_outline,
-                size: 200,
+              // const Icon(
+              //   Icons.mail_outline,
+              //   size: 200,
+              // ),
+              const Image(
+                image: AssetImage('assets/images/check.png'),
+                height: 200,
+                width: 200,
               ),
               const SizedBox(
                 height: kSpaceScreenPadding,
@@ -52,7 +58,10 @@ class EmailVerifyPage extends StatelessWidget {
                 height: kSpaceScreenPadding * 4,
               ),
               ElevatedButton(
-                  onPressed: () {}, child: Text(S.of(context).continueLabel)),
+                  onPressed: () {
+                    Navigator.of(context).push(DoctorHomeScreen.route());
+                  },
+                  child: Text(S.of(context).continueLabel)),
               TextButton(
                 onPressed: () {},
                 style: ButtonStyle(

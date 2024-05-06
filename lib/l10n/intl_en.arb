@@ -19,7 +19,14 @@
     "verifyEmailLabel":"Verify your email address",
     "sentEmailLabel":"We have sent email to your current email address",
     "continueLabel":"Continue",
-    "resendLabel":"Resend Email"
+    "resendLabel":"Resend Email",
+    "consultationLabel":"Consultation",
+    "communityLabel":"Community",
+    "helloLabel":"Hello",
+    "expertiseLabel":"Your Expertise Matter",
+    "joinLabel":"Join Our Breast Cancer Discussion Community Today",
+    "sessionLabel":"Any session today?",
+    "scheduleLabel":"Check for your scheduled consultation"
 
 
     

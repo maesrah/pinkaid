@@ -66,73 +66,76 @@ class _RegistrationPageState extends State<RegistrationPage> {
               }
             },
           ),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(kToolbarHeight + 16),
-            child: Container(
-              decoration: const BoxDecoration(
-                color: kColorSecondary,
-                border: Border(
-                  top: BorderSide(color: Colors.grey),
-                ),
-              ),
-              child: ValueListenableBuilder(
-                valueListenable: step,
-                builder: (context, value, child) {
-                  return SeparatedList(
-                      padding: const EdgeInsets.only(
-                        left: kSpaceScreenPadding,
-                        right: kSpaceScreenPadding,
-                        bottom: 10,
-                        top: 10,
-                      ),
-                      separator: const SizedBox(width: kSpaceScreenPadding),
-                      children: [
-                        CircularPercentIndicator(
-                          radius: 24,
-                          animation: true,
-                          animationDuration: 1200,
-                          percent: (value / pages.length),
-                          center: Text(
-                            '$value / ${pages.length}',
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
-                                ?.copyWith(color: kColorOnLight)
-                                .apply(fontWeightDelta: 3),
-                            textAlign: TextAlign.center,
-                          ),
-                          circularStrokeCap: CircularStrokeCap.butt,
-                          backgroundColor: Colors.green,
-                          progressColor: kColorPrimary,
-                          animateFromLastPercent: true,
-                        ),
-                        Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '$value / ${pages.length}',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(color: kColorOnLight),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                resolvePageTitle(value),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodySmall
-                                    ?.copyWith(color: kColorOnLight)
-                                    .apply(fontSizeDelta: 4),
-                              ),
-                            ])
-                      ]);
-                },
-              ),
-            ),
-          ),
+          // bottom: PreferredSize(
+          //   preferredSize: const Size.fromHeight(kToolbarHeight + 16),
+          //   child: Container(
+          //     decoration: const BoxDecoration(
+          //       color: kColorSecondary,
+          //       border: Border(
+          //         top: BorderSide(color: Colors.grey),
+          //       ),
+          //     ),
+          //     child: ValueListenableBuilder(
+          //       valueListenable: step,
+          //       builder: (context, value, child) {
+          //         return SeparatedList(
+          //             padding: const EdgeInsets.only(
+          //               left: kSpaceScreenPadding,
+          //               right: kSpaceScreenPadding,
+          //               bottom: 10,
+          //               top: 10,
+          //             ),
+          //             separator: const SizedBox(width: kSpaceScreenPadding),
+          //             children: [
+          //               CircularPercentIndicator(
+          //                 radius: 24,
+          //                 animation: true,
+          //                 animationDuration: 1200,
+          //                 percent: (value / pages.length),
+          //                 center: Text(
+          //                   '$value / ${pages.length}',
+          //                   style: Theme.of(context)
+          //                       .textTheme
+          //                       .bodySmall
+          //                       ?.copyWith(color: kColorOnLight)
+          //                       .apply(fontWeightDelta: 3),
+          //                   textAlign: TextAlign.center,
+          //                 ),
+          //                 circularStrokeCap: CircularStrokeCap.butt,
+          //                 backgroundColor: Colors.green,
+          //                 progressColor: kColorPrimary,
+          //                 animateFromLastPercent: true,
+          //               ),
+          //               Column(
+          //                   crossAxisAlignment: CrossAxisAlignment.start,
+          //                   children: [
+          //                     Text(
+          //                       '$value / ${pages.length}',
+          //                       style: Theme.of(context)
+          //                           .textTheme
+          //                           .bodySmall
+          //                           ?.copyWith(color: kColorOnLight),
+          //                     ),
+          //                     const SizedBox(height: 2),
+          //                     Text(
+          //                       resolvePageTitle(value),
+          //                       style: Theme.of(context)
+          //                           .textTheme
+          //                           .bodySmall
+          //                           ?.copyWith(color: kColorOnLight)
+          //                           .apply(fontSizeDelta: 4),
+          //                     ),
+          //                   ])
+          //             ]);
+          //       },
+          //     ),
+          //   ),
+          // ),
         ),
-        body: Stack(
+        body:
+            // const RegistrationUserRolePage(),
+
+            Stack(
           children: [
             PageView(
               controller: controller.pageController,

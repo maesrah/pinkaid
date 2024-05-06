@@ -25,12 +25,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreeLabel": MessageLookupByLibrary.simpleMessage(
             "By signing in,I am agree with "),
         "appName": MessageLookupByLibrary.simpleMessage("Pink Aid"),
+        "communityLabel": MessageLookupByLibrary.simpleMessage("Community"),
         "confirmPass": MessageLookupByLibrary.simpleMessage("Confirm password"),
+        "consultationLabel":
+            MessageLookupByLibrary.simpleMessage("Consultation"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
         "doctorLabel": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctorLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Can organise and approve teleconsultations"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "expertiseLabel":
+            MessageLookupByLibrary.simpleMessage("Your Expertise Matter"),
+        "helloLabel": MessageLookupByLibrary.simpleMessage("Hello"),
+        "joinLabel": MessageLookupByLibrary.simpleMessage(
+            "Join Our Breast Cancer Discussion Community Today"),
         "medicalIdlabel": MessageLookupByLibrary.simpleMessage("NSR number"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
@@ -43,8 +51,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Can access health information and book teleconsultations"),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
         "resendLabel": MessageLookupByLibrary.simpleMessage("Resend Email"),
+        "scheduleLabel": MessageLookupByLibrary.simpleMessage(
+            "Check for your scheduled consultation"),
         "sentEmailLabel": MessageLookupByLibrary.simpleMessage(
             "We have sent email to your current email address"),
+        "sessionLabel":
+            MessageLookupByLibrary.simpleMessage("Any session today?"),
         "termAndCondition":
             MessageLookupByLibrary.simpleMessage("Term and Condition"),
         "userRoles": MessageLookupByLibrary.simpleMessage("Select User Type"),

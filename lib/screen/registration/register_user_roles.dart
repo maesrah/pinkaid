@@ -11,6 +11,17 @@ class RegistrationUserRolePage extends StatefulWidget {
     super.key,
   });
 
+  static const String routeName = 'RegistrationUserRolePage';
+
+  static Route route() {
+    return MaterialPageRoute(
+      builder: (context) {
+        return const RegistrationUserRolePage();
+      },
+      settings: const RouteSettings(name: routeName),
+    );
+  }
+
   @override
   State<RegistrationUserRolePage> createState() =>
       _RegistrationUserRolePageState();

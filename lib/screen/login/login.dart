@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:pinkaid/screen/home/patients_home_page.dart';
 import 'package:pinkaid/screen/login/widget/login_logo_widget.dart';
 import 'package:pinkaid/screen/registration/register.dart';
+
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
 
@@ -125,13 +127,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       onPressed: () {
                         setState(() {
-                          if (_formkey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text("Successfuly Log In!"),
-                              ),
-                            );
-                          }
+                          // if (_formkey.currentState!.validate()) {
+                          //   ScaffoldMessenger.of(context).showSnackBar(
+                          //     const SnackBar(
+                          //       content: Text("Successfuly Log In!"),
+                          //     ),
+                          //   );
+                          // }
+                          Navigator.of(context).push(PatientsHomePage.route());
                         });
                       },
                       child: const Text(
@@ -156,6 +159,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ..onTap = () {
                               Navigator.of(context)
                                   .push(RegistrationPage.route());
+                              // Navigator.of(context)
+                              //     .push(RegistrationUserRolePage.route());
                             },
                         ),
                       ],
@@ -172,9 +177,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       setState(() {});
                     },
                     style: ElevatedButton.styleFrom(),
-                    child: const Icon(
-                      Icons.mail,
-                      size: 40,
+                    child: const Image(
+                      image: AssetImage(
+                        'assets/icons/google.png',
+                      ),
+                      height: 40,
+                      width: 30,
                     ),
                   ),
                 ]),

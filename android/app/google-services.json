@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "343820163501",
+    "project_id": "pinkaid",
+    "storage_bucket": "pinkaid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:343820163501:android:450ae7c1572a8eb5d5a924",
+        "android_client_info": {
+          "package_name": "com.example.pinkaid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDvLoED7cwAL4m4_gbfe9Tf9oZWa7qmRYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

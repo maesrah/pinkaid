@@ -259,6 +259,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Consultation`
+  String get consultationLabel {
+    return Intl.message(
+      'Consultation',
+      name: 'consultationLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Community`
+  String get communityLabel {
+    return Intl.message(
+      'Community',
+      name: 'communityLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello`
+  String get helloLabel {
+    return Intl.message(
+      'Hello',
+      name: 'helloLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Expertise Matter`
+  String get expertiseLabel {
+    return Intl.message(
+      'Your Expertise Matter',
+      name: 'expertiseLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Join Our Breast Cancer Discussion Community Today`
+  String get joinLabel {
+    return Intl.message(
+      'Join Our Breast Cancer Discussion Community Today',
+      name: 'joinLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Any session today?`
+  String get sessionLabel {
+    return Intl.message(
+      'Any session today?',
+      name: 'sessionLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check for your scheduled consultation`
+  String get scheduleLabel {
+    return Intl.message(
+      'Check for your scheduled consultation',
+      name: 'scheduleLabel',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

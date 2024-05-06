@@ -19,6 +19,13 @@
     "verifyEmailLabel":"Sahkan emel anda",
     "sentEmailLabel":"Kami telah menghantar emel kepada akaun emel semasa anda",
     "continueLabel":"Teruskan",
-    "resendLabel":"Hantar emel kembali"
+    "resendLabel":"Hantar emel kembali",
+    "consultationLabel":"Konsultasi",
+    "communityLabel":"Komuniti",
+    "helloLabel":"Hello",
+    "expertiseLabel":"Kepakaran Anda Diperlukan",
+    "joinLabel":"Sertai Komuniti Perbincangan Kanser Payudara Kami Hari Ini.",
+    "sessionLabel":"Ada sesi konsultasi hari ini?",
+    "scheduleLabel":"Semak Janji Temu Konsultasi Anda"
 
 }
