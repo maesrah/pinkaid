@@ -30,25 +30,35 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Sahkan kata laluan"),
         "consultationLabel": MessageLookupByLibrary.simpleMessage("Konsultasi"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Teruskan"),
+        "continueW": MessageLookupByLibrary.simpleMessage("Teruskan dengan"),
+        "correctEmail": MessageLookupByLibrary.simpleMessage("Sila isi emel"),
         "doctorLabel": MessageLookupByLibrary.simpleMessage("Doktor"),
         "doctorLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Boleh mengatur dan meluluskan perundingan kesihatan atas talian"),
         "email": MessageLookupByLibrary.simpleMessage("Emel"),
         "expertiseLabel":
             MessageLookupByLibrary.simpleMessage("Kepakaran Anda Diperlukan"),
+        "forgotPass": MessageLookupByLibrary.simpleMessage("Lupa kata laluan?"),
+        "forumLabel": MessageLookupByLibrary.simpleMessage("Forum"),
         "helloLabel": MessageLookupByLibrary.simpleMessage("Hello"),
+        "homeLabel": MessageLookupByLibrary.simpleMessage("Laman"),
         "joinLabel": MessageLookupByLibrary.simpleMessage(
             "Sertai Komuniti Perbincangan Kanser Payudara Kami Hari Ini."),
+        "login": MessageLookupByLibrary.simpleMessage("Log masuk"),
         "medicalIdlabel": MessageLookupByLibrary.simpleMessage("nombor NSR"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("Nama"),
+        "nonAccount":
+            MessageLookupByLibrary.simpleMessage("Tidak mempunyai akaun?"),
+        "passReq": MessageLookupByLibrary.simpleMessage("Isi kata laluan"),
         "password": MessageLookupByLibrary.simpleMessage("Kata Laluan"),
-        "patientLabel":
-            MessageLookupByLibrary.simpleMessage("Pesakit Barah Payudara"),
+        "patientLabel": MessageLookupByLibrary.simpleMessage("Pesakit"),
         "personalInfoLabel":
             MessageLookupByLibrary.simpleMessage("Maklumat Peribadi"),
+        "profileLabel": MessageLookupByLibrary.simpleMessage("Profil"),
         "publicLabel": MessageLookupByLibrary.simpleMessage("Awam"),
         "publicLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Boleh mengakses maklumat kesihatan dan membuat tempahan perundingan kesihatan atas talian."),
+        "register": MessageLookupByLibrary.simpleMessage("Daftar"),
         "registration": MessageLookupByLibrary.simpleMessage("Pendaftaran"),
         "resendLabel":
             MessageLookupByLibrary.simpleMessage("Hantar emel kembali"),
@@ -60,10 +70,12 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ada sesi konsultasi hari ini?"),
         "termAndCondition":
             MessageLookupByLibrary.simpleMessage("Terma dan Syarat"),
+        "trendLabel": MessageLookupByLibrary.simpleMessage("Trend"),
         "userRoles":
             MessageLookupByLibrary.simpleMessage("Pilih Jenis Pengguna"),
         "verifyEmailLabel":
             MessageLookupByLibrary.simpleMessage("Sahkan emel anda"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Selamat datang")
+        "welcome": MessageLookupByLibrary.simpleMessage("Selamat datang"),
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("Selamat Kembali!")
       };
 }

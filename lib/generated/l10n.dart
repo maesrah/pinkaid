@@ -150,10 +150,10 @@ class S {
     );
   }
 
-  /// `Breast Cancer Patient`
+  /// `Patient`
   String get patientLabel {
     return Intl.message(
-      'Breast Cancer Patient',
+      'Patient',
       name: 'patientLabel',
       desc: '',
       args: [],
@@ -325,6 +325,126 @@ class S {
     return Intl.message(
       'Check for your scheduled consultation',
       name: 'scheduleLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get homeLabel {
+    return Intl.message(
+      'Home',
+      name: 'homeLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forum`
+  String get forumLabel {
+    return Intl.message(
+      'Forum',
+      name: 'forumLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trend`
+  String get trendLabel {
+    return Intl.message(
+      'Trend',
+      name: 'trendLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profileLabel {
+    return Intl.message(
+      'Profile',
+      name: 'profileLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter correct email`
+  String get correctEmail {
+    return Intl.message(
+      'Enter correct email',
+      name: 'correctEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter password`
+  String get passReq {
+    return Intl.message(
+      'Enter password',
+      name: 'passReq',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forgot Password?`
+  String get forgotPass {
+    return Intl.message(
+      'Forgot Password?',
+      name: 'forgotPass',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Log in`
+  String get login {
+    return Intl.message(
+      'Log in',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dont have an account?`
+  String get nonAccount {
+    return Intl.message(
+      'Dont have an account?',
+      name: 'nonAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Register`
+  String get register {
+    return Intl.message(
+      'Register',
+      name: 'register',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue with`
+  String get continueW {
+    return Intl.message(
+      'Continue with',
+      name: 'continueW',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome Back!`
+  String get welcomeBack {
+    return Intl.message(
+      'Welcome Back!',
+      name: 'welcomeBack',
       desc: '',
       args: [],
     );

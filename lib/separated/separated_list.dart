@@ -8,7 +8,7 @@ const _kSeparatorSize = 8.0;
 
 class SeparatedList extends StatelessWidget {
   const SeparatedList({
-    Key? key,
+    super.key,
     this.axis = Axis.horizontal,
     this.children = const <Widget>[],
     this.separator,
@@ -16,7 +16,7 @@ class SeparatedList extends StatelessWidget {
     this.mainAxisSize = MainAxisSize.max,
     this.crossAxisAlignment = CrossAxisAlignment.center,
     this.padding,
-  }) : super(key: key);
+  });
 
   final Axis axis;
   final List<Widget> children;
@@ -58,10 +58,10 @@ class SeparatedList extends StatelessWidget {
 
     result = Flex(
       direction: axis,
-      children: modifiedChildren,
       mainAxisAlignment: mainAxisAlignment,
       mainAxisSize: mainAxisSize,
       crossAxisAlignment: crossAxisAlignment,
+      children: modifiedChildren,
     );
 
     if (padding != null && children.isNotEmpty) {

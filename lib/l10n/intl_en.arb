@@ -9,7 +9,7 @@
     "userRoles":"Select User Type",
     "doctorLabel":"Doctor",
     "doctorLabelDesc":"Can organise and approve teleconsultations",
-    "patientLabel":"Breast Cancer Patient",
+    "patientLabel":"Patient",
     "publicLabel": "Public",
     "publicLabelDesc":"Can access health information and book teleconsultations",
     "medicalIdlabel":"NSR number",
@@ -26,7 +26,22 @@
     "expertiseLabel":"Your Expertise Matter",
     "joinLabel":"Join Our Breast Cancer Discussion Community Today",
     "sessionLabel":"Any session today?",
-    "scheduleLabel":"Check for your scheduled consultation"
+    "scheduleLabel":"Check for your scheduled consultation",
+    "homeLabel":"Home",
+    "forumLabel":"Forum",
+    "trendLabel":"Trend",
+    "profileLabel":"Profile",
+    "correctEmail":"Enter correct email",
+    "passReq":"Enter password",
+    "forgotPass":"Forgot Password?",
+    "login":"Log in",
+    "nonAccount":"Dont have an account?",
+    "register":"Register",
+    "continueW":"Continue with",
+    "welcomeBack":"Welcome Back!"
+    
+
+
 
 
     

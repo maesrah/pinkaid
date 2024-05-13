@@ -30,25 +30,36 @@ class MessageLookup extends MessageLookupByLibrary {
         "consultationLabel":
             MessageLookupByLibrary.simpleMessage("Consultation"),
         "continueLabel": MessageLookupByLibrary.simpleMessage("Continue"),
+        "continueW": MessageLookupByLibrary.simpleMessage("Continue with"),
+        "correctEmail":
+            MessageLookupByLibrary.simpleMessage("Enter correct email"),
         "doctorLabel": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctorLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Can organise and approve teleconsultations"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "expertiseLabel":
             MessageLookupByLibrary.simpleMessage("Your Expertise Matter"),
+        "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
+        "forumLabel": MessageLookupByLibrary.simpleMessage("Forum"),
         "helloLabel": MessageLookupByLibrary.simpleMessage("Hello"),
+        "homeLabel": MessageLookupByLibrary.simpleMessage("Home"),
         "joinLabel": MessageLookupByLibrary.simpleMessage(
             "Join Our Breast Cancer Discussion Community Today"),
+        "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "medicalIdlabel": MessageLookupByLibrary.simpleMessage("NSR number"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
+        "nonAccount":
+            MessageLookupByLibrary.simpleMessage("Dont have an account?"),
+        "passReq": MessageLookupByLibrary.simpleMessage("Enter password"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
-        "patientLabel":
-            MessageLookupByLibrary.simpleMessage("Breast Cancer Patient"),
+        "patientLabel": MessageLookupByLibrary.simpleMessage("Patient"),
         "personalInfoLabel":
             MessageLookupByLibrary.simpleMessage("Personal information"),
+        "profileLabel": MessageLookupByLibrary.simpleMessage("Profile"),
         "publicLabel": MessageLookupByLibrary.simpleMessage("Public"),
         "publicLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Can access health information and book teleconsultations"),
+        "register": MessageLookupByLibrary.simpleMessage("Register"),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
         "resendLabel": MessageLookupByLibrary.simpleMessage("Resend Email"),
         "scheduleLabel": MessageLookupByLibrary.simpleMessage(
@@ -59,9 +70,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Any session today?"),
         "termAndCondition":
             MessageLookupByLibrary.simpleMessage("Term and Condition"),
+        "trendLabel": MessageLookupByLibrary.simpleMessage("Trend"),
         "userRoles": MessageLookupByLibrary.simpleMessage("Select User Type"),
         "verifyEmailLabel":
             MessageLookupByLibrary.simpleMessage("Verify your email address"),
-        "welcome": MessageLookupByLibrary.simpleMessage("Welcome")
+        "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
+        "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!")
       };
 }

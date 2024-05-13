@@ -28,7 +28,7 @@ const Color kColorPrimaryDark = kColorDarkOrange900;
 const Color kColorPrimary = Color(0xFFF12B6B);
 const Color kColorPrimaryLight = Color(0xFFFD94B4);
 const Color kColorSecondaryDark = Color(0xFFFF467E);
-const Color kColorSecondary = Color(0xFFF6C7C7);
+const Color kColorSecondary = Color(0xFFFFB1B1);
 const Color kColorErrorDark = Color(0xFFBF2600);
 const Color kColorError = Color(0xFFFF5630);
 const Color kColorWarningDark = Color(0xFFFF8B00);
@@ -85,8 +85,7 @@ class AppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     fontFamily: 'Poppins',
-    brightness: Brightness.light,
-    primaryColor: const Color(0xffFC819E),
-    scaffoldBackgroundColor: kColorPrimary,
+    primaryColor: kColorSecondary,
+    scaffoldBackgroundColor: Colors.white,
   );
 }

@@ -9,7 +9,7 @@
     "userRoles":"Pilih Jenis Pengguna",
     "doctorLabel":"Doktor",
     "doctorLabelDesc":"Boleh mengatur dan meluluskan perundingan kesihatan atas talian",
-    "patientLabel":"Pesakit Barah Payudara",
+    "patientLabel":"Pesakit",
     "publicLabel": "Awam",
     "publicLabelDesc":"Boleh mengakses maklumat kesihatan dan membuat tempahan perundingan kesihatan atas talian.",
     "medicalIdlabel":"nombor NSR",
@@ -26,6 +26,20 @@
     "expertiseLabel":"Kepakaran Anda Diperlukan",
     "joinLabel":"Sertai Komuniti Perbincangan Kanser Payudara Kami Hari Ini.",
     "sessionLabel":"Ada sesi konsultasi hari ini?",
-    "scheduleLabel":"Semak Janji Temu Konsultasi Anda"
+    "scheduleLabel":"Semak Janji Temu Konsultasi Anda",
+    "homeLabel":"Laman",
+    "forumLabel":"Forum",
+    "trendLabel":"Trend",
+    "profileLabel":"Profil",
+    "correctEmail":"Sila isi emel",
+    "passReq":"Isi kata laluan",
+    "forgotPass":"Lupa kata laluan?",
+    "login":"Log masuk",
+    "nonAccount":"Tidak mempunyai akaun?",
+    "register":"Daftar",
+    "continueW":"Teruskan dengan",
+    "welcomeBack":"Selamat Kembali!"
+  
+
 
 }

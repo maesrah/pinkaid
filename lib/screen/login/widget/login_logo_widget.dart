@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:pinkaid/generated/l10n.dart";
 import "package:pinkaid/theme/textheme.dart";
 import "package:pinkaid/theme/theme.dart";
 import "package:pinkaid/utils/constant/images_string.dart";
@@ -18,19 +19,15 @@ class LoginLogoWidget extends StatelessWidget {
       child: Padding(
         padding:
             const EdgeInsets.only(top: 70, left: 30, right: 30, bottom: 40),
-        child: Row(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Image(height: 120, image: AssetImage(KImages.appLogo)),
+            const Image(height: 100, image: AssetImage(KImages.appLogo)),
             Column(
               children: [
                 Text(
-                  'Welcome Back!',
+                  S.of(context).welcomeBack,
                   style: KTextTheme.lightTextTheme.titleMedium,
-                ),
-                Text(
-                  'We missed you!',
-                  style: KTextTheme.lightTextTheme.bodySmall,
                 ),
               ],
             )
