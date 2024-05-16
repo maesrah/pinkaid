@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pinkaid/generated/l10n.dart';
-import 'package:pinkaid/screen/login/widget/login_form.dart';
-import 'package:pinkaid/screen/login/widget/login_logo_widget.dart';
+import 'package:pinkaid/features/authentication/screen/login/widget/login_form.dart';
+import 'package:pinkaid/features/authentication/screen/login/widget/login_logo_widget.dart';
 
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pinkaid/generated/l10n.dart';
-import 'package:pinkaid/screen/login/login.dart';
+import 'package:pinkaid/features/authentication/screen/login/login.dart';
 import 'package:pinkaid/theme/theme.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
 

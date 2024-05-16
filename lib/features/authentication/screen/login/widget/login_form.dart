@@ -2,8 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/generated/l10n.dart';
+import 'package:pinkaid/features/authentication/screen/registration/register_basic_info.page.dart';
 
-import 'package:pinkaid/screen/registration/register_user_roles.dart';
 import 'package:pinkaid/theme/elevated_button_theme.dart';
 
 import 'package:pinkaid/theme/theme.dart';
@@ -114,7 +114,7 @@ class _LoginFormState extends State<LoginForm> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Navigator.of(context)
-                          .push(RegistrationUserRolePage.route());
+                          .push(RegistrationBasicInfoPage.route());
                       // Navigator.of(context)
                       //     .push(RegistrationUserRolePage.route());
                     },

@@ -1,9 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 import 'package:pinkaid/generated/l10n.dart';
-import 'package:pinkaid/screen/registration/use_register_form_hook.dart';
-import 'package:pinkaid/screen/registration/verify_email.dart';
+import 'package:pinkaid/features/authentication/screen/registration/use_register_form_hook.dart';
+import 'package:pinkaid/features/authentication/screen/registration/verify_email.dart';
+import 'package:pinkaid/theme/textheme.dart';
 
 import 'package:pinkaid/theme/theme.dart';
 
@@ -39,7 +41,7 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
       appBar: AppBar(
         backgroundColor: kColorSecondary,
         title: Text(
-          S.of(context).personalInfoLabel,
+          S.of(context).registration,
         ),
         leading: BackButton(
           onPressed: () {
@@ -55,12 +57,12 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Text(
+                  'Let\'s create your account',
+                  style: KTextTheme.lightTextTheme.headlineMedium,
+                ),
                 const SizedBox(
                   height: kSpaceScreenPadding,
-                ),
-                Text(
-                  S.of(context).nameLabel,
-                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 TextFormField(
                   validator: (value) {
@@ -72,6 +74,7 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
                     }
                   },
                   decoration: InputDecoration(
+                    prefixIcon: const Icon(Iconsax.profile_tick),
                     hintText: S.of(context).nameLabel,
                     filled: true,
                     fillColor: Colors.white,
@@ -84,42 +87,34 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: kSpaceScreenPadding,
+                  height: kSpaceScreenPaddingLg,
                 ),
-
-                // Text(
-                //   S.of(context).email,
-                //   style: Theme.of(context).textTheme.bodyLarge,
-                // ),
-                // TextFormField(
-                //   validator: (value) {
-                //     //a.aaba@aa1a_a.com
-                //     if (value!.isEmpty ||
-                //         !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                //             .hasMatch(value)) {
-                //       return 'Enter correct email';
-                //     } else {
-                //       return null;
-                //     }
-                //   },
-                //   decoration: InputDecoration(
-                //     hintText: S.of(context).email,
-                //     filled: true,
-                //     fillColor: Colors.white,
-                //     errorStyle: const TextStyle(color: Colors.black),
-                //     border: const OutlineInputBorder(
-                //       borderRadius: BorderRadius.all(
-                //         Radius.circular(16.0),
-                //       ),
-                //     ),
-                //   ),
-                // ),
+                TextFormField(
+                  validator: (value) {
+                    //a.aaba@aa1a_a.com
+                    if (value!.isEmpty ||
+                        !RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$')
+                            .hasMatch(value)) {
+                      return 'Enter correct phone number';
+                    } else {
+                      return null;
+                    }
+                  },
+                  decoration: InputDecoration(
+                    prefixIcon: const Icon(Iconsax.call),
+                    hintText: S.of(context).phoneNo,
+                    filled: true,
+                    fillColor: Colors.white,
+                    errorStyle: const TextStyle(color: Colors.black),
+                    border: const OutlineInputBorder(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16.0),
+                      ),
+                    ),
+                  ),
+                ),
                 const SizedBox(
-                  height: kSpaceScreenPadding,
-                ),
-                Text(
-                  S.of(context).password,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  height: kSpaceScreenPaddingLg,
                 ),
                 TextFormField(
                   validator: (value) {
@@ -130,6 +125,7 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
                   },
                   obscureText: _visible,
                   decoration: InputDecoration(
+                    prefixIcon: const Icon(Iconsax.password_check),
                     filled: true,
                     fillColor: Colors.white,
                     hintText: S.of(context).password,
@@ -148,11 +144,7 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: kSpaceScreenPadding,
-                ),
-                Text(
-                  S.of(context).confirmPass,
-                  style: Theme.of(context).textTheme.bodyLarge,
+                  height: kSpaceScreenPaddingLg,
                 ),
                 TextFormField(
                   validator: (value) {
@@ -163,6 +155,7 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
                   },
                   obscureText: _visible,
                   decoration: InputDecoration(
+                    prefixIcon: const Icon(Iconsax.password_check),
                     filled: true,
                     fillColor: Colors.white,
                     hintText: S.of(context).confirmPass,
@@ -181,29 +174,34 @@ class _RegistrationBasicInfoPageState extends State<RegistrationBasicInfoPage> {
                   ),
                 ),
                 const SizedBox(
-                  height: kSpaceScreenPadding,
+                  height: kSpaceScreenPaddingLg,
                 ),
                 DropdownButtonFormField<UserRole>(
-                    value: _selectedUserRole,
-                    onChanged: (UserRole? newValue) {
-                      setState(() {
-                        _selectedUserRole = newValue;
-                      });
-                    },
-                    items: [
-                      // Add a default value to indicate selection is required
-                      const DropdownMenuItem<UserRole>(
-                        value: null,
-                        child: Text('Select a role'),
-                      ),
-                      // Add enum values
-                      ...UserRole.values.map((UserRole userRole) {
-                        return DropdownMenuItem<UserRole>(
-                          value: userRole,
-                          child: Text(userRole.toString().split('.').last),
-                        );
-                      }),
-                    ]),
+                  value: _selectedUserRole,
+                  onChanged: (UserRole? newValue) {
+                    setState(() {
+                      _selectedUserRole = newValue;
+                    });
+                  },
+                  decoration: const InputDecoration(
+                      prefixIcon: Icon(Iconsax.people),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(16)))),
+                  items: [
+                    // Add a default value to indicate selection is required
+                    const DropdownMenuItem<UserRole>(
+                      value: null,
+                      child: Text('Select a role'),
+                    ),
+                    // Add enum values
+                    ...UserRole.values.map((UserRole userRole) {
+                      return DropdownMenuItem<UserRole>(
+                        value: userRole,
+                        child: Text(userRole.toString().split('.').last),
+                      );
+                    }),
+                  ],
+                ),
                 const SizedBox(
                   height: kSpaceScreenPadding,
                 ),

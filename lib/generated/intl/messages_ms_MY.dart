@@ -54,6 +54,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "patientLabel": MessageLookupByLibrary.simpleMessage("Pesakit"),
         "personalInfoLabel":
             MessageLookupByLibrary.simpleMessage("Maklumat Peribadi"),
+        "phoneNo": MessageLookupByLibrary.simpleMessage("Nombor telefon"),
         "profileLabel": MessageLookupByLibrary.simpleMessage("Profil"),
         "publicLabel": MessageLookupByLibrary.simpleMessage("Awam"),
         "publicLabelDesc": MessageLookupByLibrary.simpleMessage(
