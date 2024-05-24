@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Pilih Jenis Pengguna"),
         "verifyEmailLabel":
             MessageLookupByLibrary.simpleMessage("Sahkan emel anda"),
+        "verifyNo": MessageLookupByLibrary.simpleMessage("Nombor verifikasi"),
         "welcome": MessageLookupByLibrary.simpleMessage("Selamat datang"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Selamat Kembali!")
       };

@@ -75,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "userRoles": MessageLookupByLibrary.simpleMessage("Select User Type"),
         "verifyEmailLabel":
             MessageLookupByLibrary.simpleMessage("Verify your email address"),
+        "verifyNo": MessageLookupByLibrary.simpleMessage("Verification number"),
         "welcome": MessageLookupByLibrary.simpleMessage("Welcome"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back!")
       };

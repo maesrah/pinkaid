@@ -54,7 +54,6 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
             Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: const BoxDecoration(
-                    color: kColorPrimaryLight,
                     borderRadius:
                         BorderRadius.only(bottomRight: Radius.circular(50))),
                 child: Padding(
@@ -75,16 +74,12 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                     ],
                   ),
                 )),
-            const SizedBox(
-              height: kSpaceScreenPaddingLg,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: kSpaceScreenPaddingLg,
-                      vertical: kSpaceScreenPaddingLg),
+                      horizontal: 30, vertical: kSpaceScreenPaddingLg),
                   decoration: BoxDecoration(
                       color: kColorSecondary,
                       borderRadius: BorderRadius.circular(16)),
@@ -107,8 +102,7 @@ class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: kSpaceScreenPaddingLg,
-                      vertical: kSpaceScreenPaddingLg),
+                      horizontal: 30, vertical: kSpaceScreenPaddingLg),
                   decoration: BoxDecoration(
                       color: kColorSecondary,
                       borderRadius: BorderRadius.circular(16)),

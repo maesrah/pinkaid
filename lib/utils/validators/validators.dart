@@ -1,4 +1,18 @@
 class KValidator {
+  static String? validateEmptyText(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Enter your name';
+    }
+
+    final nameRegExp = RegExp(r'^[a-z A-Z]+$');
+
+    if (!nameRegExp.hasMatch(value)) {
+      return 'Invalid name';
+    }
+
+    return null;
+  }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Email is required';
@@ -32,6 +46,31 @@ class KValidator {
 
     if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
       return 'Password must contain at least one special character';
+    }
+
+    return null;
+  }
+
+  static String? samePassword(String? value, String? realPass) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required';
+    }
+
+    if (value != realPass) {
+      return 'Password is not the same';
+    }
+    return null;
+  }
+
+  static String? validatePhoneNumber(String? value) {
+    if (value == null || value.isEmpty) {
+      return "Phone number is required";
+    }
+
+    final phoneRegExp = RegExp(r'^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$');
+
+    if (!phoneRegExp.hasMatch(value)) {
+      return 'Invalid number';
     }
 
     return null;

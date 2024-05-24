@@ -11,11 +11,7 @@ class KFormatter {
   }
 
   static String formatPhoneNumber(String phoneNumber) {
-    if (phoneNumber.length == 9) {
-      return '(${phoneNumber.substring(0, 2)} ${phoneNumber.substring(2, 5)} ${phoneNumber.substring(5)})';
-    } else if (phoneNumber.length == 10) {
-      return '(${phoneNumber.substring(0, 3)} ${phoneNumber.substring(3, 6)} ${phoneNumber.substring(6)})';
-    }
+    phoneNumber = '+60$phoneNumber';
     return phoneNumber;
   }
 }

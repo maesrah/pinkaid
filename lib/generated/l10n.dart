@@ -459,6 +459,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Verification number`
+  String get verifyNo {
+    return Intl.message(
+      'Verification number',
+      name: 'verifyNo',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

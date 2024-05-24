@@ -63,6 +63,7 @@ const double kButtonHeightSm = 32.0;
 
 const double kSpaceScreenPadding = 10.0;
 const double kSpaceScreenPaddingLg = 22.0;
+
 const double kSpaceSectionSm = 8.0;
 const double kSpaceSectionMd = 14.0;
 const double kSpaceSectionLg = 20.0;
