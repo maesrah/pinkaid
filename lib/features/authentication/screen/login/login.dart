@@ -7,7 +7,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/bottom_nav_bar.dart';
 import 'package:pinkaid/features/authentication/controller/login/loginController.dart';
-import 'package:pinkaid/features/authentication/screen/home/patients_home_page.dart';
+import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 
 import 'package:pinkaid/features/authentication/screen/registration/registrationPage.dart';
 import 'package:pinkaid/generated/l10n.dart';
@@ -91,10 +91,10 @@ class LoginScreen extends StatelessWidget {
                         style:
                             KElevatedButtonTheme.lightElevatedButtonTheme.style,
                         onPressed: () async {
-                          // await controller.logInWithPhoneNumber(
-                          //     phoneNo: KFormatter.formatPhoneNumber(
-                          //         controller.phoneNumber.text));
-                          Get.to(() => const CustomBottomNavigationBar());
+                          await controller.logInWithPhoneNumber(
+                              phoneNo: KFormatter.formatPhoneNumber(
+                                  controller.phoneNumber.text));
+                          // Get.to(() => const PatientBottomNavigationBar());
                         },
                         child: Text(S.of(context).login)),
                   ),

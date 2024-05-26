@@ -21,11 +21,11 @@ class KTextTheme {
 
     //body
     bodyLarge: const TextStyle().copyWith(
-        fontSize: 24, fontWeight: FontWeight.w500, color: Colors.black),
+        fontSize: 24, fontWeight: FontWeight.normal, color: Colors.black),
     bodyMedium: const TextStyle().copyWith(
         fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),
     bodySmall: const TextStyle().copyWith(
-        fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
+        fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black),
 
     //label
     labelLarge: const TextStyle().copyWith(

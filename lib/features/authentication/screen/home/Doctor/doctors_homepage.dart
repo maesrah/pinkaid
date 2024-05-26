@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:pinkaid/generated/l10n.dart';
-import 'package:pinkaid/features/authentication/screen/home/patients_home_page.dart';
+import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';

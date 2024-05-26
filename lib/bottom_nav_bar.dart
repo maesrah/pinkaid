@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/generated/l10n.dart';
+import 'package:pinkaid/theme/theme.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
-  const CustomBottomNavigationBar({super.key});
+class PatientBottomNavigationBar extends StatelessWidget {
+  const PatientBottomNavigationBar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
             selectedIndex: controller.selectedIndex.value,
             onDestinationSelected: (index) =>
                 controller.selectedIndex.value = index,
+            backgroundColor: kColorInfo,
             destinations: [
               NavigationDestination(
                   icon: const Icon(Iconsax.home),
@@ -25,7 +28,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                   icon: const Icon(Iconsax.message),
                   label: S.of(context).forumLabel),
               NavigationDestination(
-                  icon: const Icon(Iconsax.chart_1),
+                  icon: const Icon(Iconsax.diagram),
                   label: S.of(context).trendLabel),
               NavigationDestination(
                   icon: const Icon(Iconsax.calendar),
@@ -40,9 +43,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
 class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
-    Container(
-      color: Colors.green,
-    ),
+    const PatientsHomePage(),
     Container(
       color: Colors.pink,
     ),

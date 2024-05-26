@@ -5,9 +5,11 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:pinkaid/bottom_nav_bar.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
+import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
 
-import 'package:pinkaid/features/authentication/screen/home/patients_home_page.dart';
+import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/features/authentication/screen/login/verifyOTP.dart';
 import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
@@ -98,12 +100,12 @@ class LoginController extends GetxController {
             UserModel.fromJson(userDoc.data() as Map<String, dynamic>);
 
         firebaseAuth.signInWithCredential(credential).then((UserCredential) {
-          // if (user.role == UserRole.doctor) {
-          //   Get.to(() => const DoctorHomeScreen());
-          // } else {
-          //   Get.to(() => const PatientsHomePage());
-          // }
-          Get.to(() => const PatientsHomePage());
+          if (user.role == UserRole.doctor) {
+            Get.to(() => const DoctorHomeScreen());
+          } else {
+            Get.to(() => const PatientBottomNavigationBar());
+          }
+          // Get.to(() => const PatientsHomePage());
         });
       } else {
         KLoaders.errorSnackBar(

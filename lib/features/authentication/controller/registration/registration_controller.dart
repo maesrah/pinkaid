@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 
-import 'package:pinkaid/features/authentication/screen/home/doctors_homepage.dart';
-import 'package:pinkaid/features/authentication/screen/home/patients_home_page.dart';
+import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
+import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
 
