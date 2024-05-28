@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 enum UserRole {
   doctor,
   patient,
@@ -25,6 +27,27 @@ class UserModel {
         phoneNumber: json['phoneNumber'] as String,
         role: UserRole.values.firstWhere((e) => e.name == json['role']),
         medicalId: json['medicalId'] as String?);
+  }
+
+  factory UserModel.fromSnapshot(DocumentSnapshot snapshot) {
+    final data = snapshot.data() as Map<String, dynamic>;
+    return UserModel(
+      id: snapshot.id,
+      fullName: data['fullName'] as String,
+      phoneNumber: data['phoneNumber'] as String,
+      role: UserRole.values.firstWhere((e) => e.name == data['role']),
+      medicalId: data['medicalId'] as String?,
+    );
+  }
+
+  factory UserModel.empty() {
+    return UserModel(
+      id: '',
+      fullName: '',
+      phoneNumber: '',
+      role: UserRole.patient,
+      medicalId: null,
+    );
   }
 
   // Method to convert a UserModel to a JSON map

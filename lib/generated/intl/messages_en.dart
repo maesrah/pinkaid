@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreeLabel": MessageLookupByLibrary.simpleMessage(
             "By signing in,I am agree with "),
         "appName": MessageLookupByLibrary.simpleMessage("Pink Aid"),
+        "bookConsultTitle":
+            MessageLookupByLibrary.simpleMessage("Book a consultation?"),
         "communityLabel": MessageLookupByLibrary.simpleMessage("Community"),
         "confirmPass": MessageLookupByLibrary.simpleMessage("Confirm password"),
         "consultationLabel":
@@ -33,9 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueW": MessageLookupByLibrary.simpleMessage("Continue with"),
         "correctEmail":
             MessageLookupByLibrary.simpleMessage("Enter correct email"),
+        "discussionTitle": MessageLookupByLibrary.simpleMessage("Discussion"),
         "doctorLabel": MessageLookupByLibrary.simpleMessage("Doctor"),
         "doctorLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Can organise and approve teleconsultations"),
+        "doctorSub": MessageLookupByLibrary.simpleMessage("Find a doctor?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "expertiseLabel":
             MessageLookupByLibrary.simpleMessage("Your Expertise Matter"),
@@ -45,6 +49,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeLabel": MessageLookupByLibrary.simpleMessage("Home"),
         "joinLabel": MessageLookupByLibrary.simpleMessage(
             "Join Our Breast Cancer Discussion Community Today"),
+        "journeyHeader": MessageLookupByLibrary.simpleMessage(
+            "Have you record your journey today?"),
+        "journeySub": MessageLookupByLibrary.simpleMessage(
+            "Track your journey to beat this!"),
         "login": MessageLookupByLibrary.simpleMessage("Log in"),
         "medicalIdlabel": MessageLookupByLibrary.simpleMessage("NSR number"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("Name"),
@@ -60,8 +68,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "publicLabel": MessageLookupByLibrary.simpleMessage("Public"),
         "publicLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Can access health information and book teleconsultations"),
+        "quizHeader": MessageLookupByLibrary.simpleMessage(
+            "Start the quiz game and earn the badge!"),
         "register": MessageLookupByLibrary.simpleMessage("Register"),
         "registration": MessageLookupByLibrary.simpleMessage("Registration"),
+        "rescheduleTitle": MessageLookupByLibrary.simpleMessage(
+            "Rescheduling your appointment?"),
         "resendLabel": MessageLookupByLibrary.simpleMessage("Resend Email"),
         "scheduleLabel": MessageLookupByLibrary.simpleMessage(
             "Check for your scheduled consultation"),

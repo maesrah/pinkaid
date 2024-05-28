@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pinkaid/features/authentication/screen/home/Patient/discussion_screen.dart';
 import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -44,9 +45,7 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const PatientsHomePage(),
-    Container(
-      color: Colors.pink,
-    ),
+    const DiscussionScreen(),
     Container(
       color: Colors.blue,
     ),

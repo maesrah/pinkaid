@@ -2,14 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:pinkaid/bottom_nav_bar.dart';
+import 'package:get_storage/get_storage.dart';
+
+import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
-
-import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/features/authentication/screen/login/verifyOTP.dart';
 import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
@@ -20,6 +17,7 @@ import 'package:pinkaid/utils/utils.dart';
 class LoginController extends GetxController {
   static LoginController get instance => Get.find();
 
+  final localStorage = GetStorage();
   final phoneNumber = TextEditingController();
   final verifyNo = TextEditingController();
   final rememberMe = false.obs;
@@ -113,7 +111,10 @@ class LoginController extends GetxController {
           message: 'No account found with this phone number.',
         );
       }
+
+      AuthRepository.instance.screenRedirect();
     } catch (e) {
+      KFullScreenLoaders.stopLoading();
       KLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
       KFullScreenLoaders.stopLoading();

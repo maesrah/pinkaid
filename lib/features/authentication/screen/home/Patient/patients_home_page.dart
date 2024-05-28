@@ -2,7 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/get_core.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pinkaid/features/authentication/controller/user_controller.dart';
+import 'package:pinkaid/features/authentication/screen/profile/profilePage.dart';
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -22,6 +28,7 @@ class PatientsHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(UserController());
     final List<String> discussions = [
       'Discussion 1',
       'Discussion 2',
@@ -36,7 +43,10 @@ class PatientsHomePage extends StatelessWidget {
               icon: const Icon(CupertinoIcons.question_circle))
         ],
         leading: IconButton(
-            onPressed: () {}, icon: const Icon(CupertinoIcons.profile_circled)),
+            onPressed: () {
+              Get.to(() => const ProfileScreen());
+            },
+            icon: const Icon(CupertinoIcons.profile_circled)),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -53,9 +63,11 @@ class PatientsHomePage extends StatelessWidget {
                       S.of(context).helloLabel,
                       style: KTextTheme.lightTextTheme.titleLarge,
                     ),
-                    Text(
-                      'Suzanne!',
-                      style: KTextTheme.lightTextTheme.titleLarge,
+                    Obx(
+                      () => Text(
+                        controller.user.value.fullName,
+                        style: KTextTheme.lightTextTheme.titleLarge,
+                      ),
                     )
                   ],
                 ),
@@ -75,7 +87,7 @@ class PatientsHomePage extends StatelessWidget {
                       children: [
                         Expanded(
                             child: Text(
-                          "Start the quiz game and earn the badge!",
+                          S.of(context).quizHeader,
                           style: KTextTheme.lightTextTheme.bodyLarge,
                         )),
                         Image.asset(
@@ -109,11 +121,11 @@ class PatientsHomePage extends StatelessWidget {
                               size: 50,
                             ),
                             Text(
-                              'Have you record your journey today?',
+                              S.of(context).journeyHeader,
                               style: KTextTheme.lightTextTheme.titleSmall,
                             ),
                             Text(
-                              'Track your journey to beat this!',
+                              S.of(context).journeySub,
                               style: KTextTheme.lightTextTheme.bodySmall,
                             )
                           ],
@@ -139,15 +151,15 @@ class PatientsHomePage extends StatelessWidget {
                               size: 50,
                             ),
                             Text(
-                              'Book a consultation?',
+                              S.of(context).bookConsultTitle,
                               style: KTextTheme.lightTextTheme.titleSmall,
                             ),
                             Text(
-                              'Find a doctor?',
+                              S.of(context).doctorSub,
                               style: KTextTheme.lightTextTheme.bodySmall,
                             ),
                             Text(
-                              'Rescheduling your appointment?',
+                              S.of(context).rescheduleTitle,
                               style: KTextTheme.lightTextTheme.bodySmall,
                             )
                           ],
@@ -160,7 +172,7 @@ class PatientsHomePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text('Discussion'),
+                  Text(S.of(context).discussionTitle),
                   IconButton(
                       onPressed: () {},
                       icon: const Icon(Iconsax.arrow_right_1_copy))

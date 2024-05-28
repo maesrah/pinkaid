@@ -3,4 +3,5 @@ class KImages {
   static const String google = "assets/images/google.png";
   static const String medical = "assets/images/medicalreport.png";
   static const String bufferAnimation = "assets/images/animations/loading.json";
+  static const String userImage = 'assets/images/images.jpg';
 }

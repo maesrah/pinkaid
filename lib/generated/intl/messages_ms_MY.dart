@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "agreeLabel": MessageLookupByLibrary.simpleMessage(
             "Dengan mendaftar,saya bersetuju dengan "),
         "appName": MessageLookupByLibrary.simpleMessage("Pink Aid"),
+        "bookConsultTitle":
+            MessageLookupByLibrary.simpleMessage("Tempah konsultasi?"),
         "communityLabel": MessageLookupByLibrary.simpleMessage("Komuniti"),
         "confirmPass":
             MessageLookupByLibrary.simpleMessage("Sahkan kata laluan"),
@@ -32,9 +34,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueLabel": MessageLookupByLibrary.simpleMessage("Teruskan"),
         "continueW": MessageLookupByLibrary.simpleMessage("Teruskan dengan"),
         "correctEmail": MessageLookupByLibrary.simpleMessage("Sila isi emel"),
+        "discussionTitle": MessageLookupByLibrary.simpleMessage("Perbincangan"),
         "doctorLabel": MessageLookupByLibrary.simpleMessage("Doktor"),
         "doctorLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Boleh mengatur dan meluluskan perundingan kesihatan atas talian"),
+        "doctorSub": MessageLookupByLibrary.simpleMessage("Mencari doktor?"),
         "email": MessageLookupByLibrary.simpleMessage("Emel"),
         "expertiseLabel":
             MessageLookupByLibrary.simpleMessage("Kepakaran Anda Diperlukan"),
@@ -44,6 +48,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "homeLabel": MessageLookupByLibrary.simpleMessage("Laman"),
         "joinLabel": MessageLookupByLibrary.simpleMessage(
             "Sertai Komuniti Perbincangan Kanser Payudara Kami Hari Ini."),
+        "journeyHeader": MessageLookupByLibrary.simpleMessage(
+            "Adakah anda telah merekod perjalanan kesihatan anda hari ini?"),
+        "journeySub": MessageLookupByLibrary.simpleMessage(
+            "Jejaki perjalanan kesihatan anda untuk mengatasi cabaran ini!"),
         "login": MessageLookupByLibrary.simpleMessage("Log masuk"),
         "medicalIdlabel": MessageLookupByLibrary.simpleMessage("nombor NSR"),
         "nameLabel": MessageLookupByLibrary.simpleMessage("Nama"),
@@ -59,8 +67,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "publicLabel": MessageLookupByLibrary.simpleMessage("Awam"),
         "publicLabelDesc": MessageLookupByLibrary.simpleMessage(
             "Boleh mengakses maklumat kesihatan dan membuat tempahan perundingan kesihatan atas talian."),
+        "quizHeader": MessageLookupByLibrary.simpleMessage(
+            "Mulakan permainan kuiz dan dapatkan lencana!"),
         "register": MessageLookupByLibrary.simpleMessage("Daftar"),
         "registration": MessageLookupByLibrary.simpleMessage("Pendaftaran"),
+        "rescheduleTitle": MessageLookupByLibrary.simpleMessage(
+            "Menjadualkan semula janji temu anda?"),
         "resendLabel":
             MessageLookupByLibrary.simpleMessage("Hantar emel kembali"),
         "scheduleLabel": MessageLookupByLibrary.simpleMessage(

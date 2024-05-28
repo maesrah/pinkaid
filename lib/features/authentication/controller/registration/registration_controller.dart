@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
+import 'package:pinkaid/data/repositories/user/user_repository.dart';
 
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
 import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
@@ -30,6 +31,7 @@ class RegistrationController extends GetxController {
   String get result => statusString.value;
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
   var statusString = "Welcome".obs;
   var codeSent = "no".obs;
   var verify_no = "1".obs;
@@ -40,6 +42,7 @@ class RegistrationController extends GetxController {
   String get codeSentResult => codeSent.value;
   String get verificationResult => verify_no.value;
   final _authRepository = AuthRepository.instance;
+  final _userRepository = Get.put(UserRepository());
 
   //register user in firebase and save user data in firebase
   signInWithPhoneNumber({
@@ -143,7 +146,7 @@ class RegistrationController extends GetxController {
           }
         });
 
-        _authRepository.saveUserRecord(user);
+        _userRepository.saveUserRecord(user);
       }
     } catch (e) {
       KLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());

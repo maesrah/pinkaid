@@ -469,6 +469,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Start the quiz game and earn the badge!`
+  String get quizHeader {
+    return Intl.message(
+      'Start the quiz game and earn the badge!',
+      name: 'quizHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have you record your journey today?`
+  String get journeyHeader {
+    return Intl.message(
+      'Have you record your journey today?',
+      name: 'journeyHeader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track your journey to beat this!`
+  String get journeySub {
+    return Intl.message(
+      'Track your journey to beat this!',
+      name: 'journeySub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Book a consultation?`
+  String get bookConsultTitle {
+    return Intl.message(
+      'Book a consultation?',
+      name: 'bookConsultTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Find a doctor?`
+  String get doctorSub {
+    return Intl.message(
+      'Find a doctor?',
+      name: 'doctorSub',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rescheduling your appointment?`
+  String get rescheduleTitle {
+    return Intl.message(
+      'Rescheduling your appointment?',
+      name: 'rescheduleTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discussion`
+  String get discussionTitle {
+    return Intl.message(
+      'Discussion',
+      name: 'discussionTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

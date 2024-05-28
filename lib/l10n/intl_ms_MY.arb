@@ -40,7 +40,14 @@
     "continueW":"Teruskan dengan",
     "welcomeBack":"Selamat Kembali!",
     "phoneNo":"Nombor telefon",
-    "verifyNo":"Nombor verifikasi"
+    "verifyNo":"Nombor verifikasi",
+    "quizHeader":"Mulakan permainan kuiz dan dapatkan lencana!",
+    "journeyHeader":"Adakah anda telah merekod perjalanan kesihatan anda hari ini?",
+    "journeySub":"Jejaki perjalanan kesihatan anda untuk mengatasi cabaran ini!",
+    "bookConsultTitle":"Tempah konsultasi?",
+    "doctorSub":"Mencari doktor?",
+    "rescheduleTitle":"Menjadualkan semula janji temu anda?",
+    "discussionTitle":"Perbincangan"
   
 
 

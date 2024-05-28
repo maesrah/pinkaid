@@ -1,13 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/get_instance.dart';
 
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:pinkaid/bottom_nav_bar.dart';
+import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/features/authentication/controller/login/loginController.dart';
-import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 
 import 'package:pinkaid/features/authentication/screen/registration/registrationPage.dart';
 import 'package:pinkaid/generated/l10n.dart';
@@ -18,6 +15,7 @@ import 'package:pinkaid/theme/elevated_button_theme.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
 import 'package:pinkaid/utils/formatters/formatter.dart';
+
 import 'package:pinkaid/utils/validators/validators.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -67,22 +65,6 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: 10,
-                  ),
-                  Row(
-                    children: [
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      SizedBox(
-                        width: 10,
-                        height: 10,
-                        child: Checkbox(value: true, onChanged: (value) {}),
-                      ),
-                      const SizedBox(
-                        width: kSpaceSectionSm,
-                      ),
-                      const Text('Remember me?')
-                    ],
                   ),
                   const SizedBox(height: kSpaceScreenPaddingLg),
                   SizedBox(

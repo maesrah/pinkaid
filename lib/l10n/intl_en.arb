@@ -40,7 +40,18 @@
     "continueW":"Continue with",
     "welcomeBack":"Welcome Back!",
     "phoneNo":"Phone number",
-    "verifyNo":"Verification number"
+    "verifyNo":"Verification number",
+    "quizHeader":"Start the quiz game and earn the badge!",
+    "journeyHeader":"Have you record your journey today?",
+    "journeySub":"Track your journey to beat this!",
+    "bookConsultTitle":"Book a consultation?",
+    "doctorSub":"Find a doctor?",
+    "rescheduleTitle":"Rescheduling your appointment?",
+    "discussionTitle":"Discussion"
+
+    
+
+
     
 
 
