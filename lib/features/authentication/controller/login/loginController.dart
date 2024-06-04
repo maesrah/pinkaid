@@ -8,7 +8,7 @@ import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
 import 'package:pinkaid/features/authentication/screen/login/verifyOTP.dart';
-import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
+import 'package:pinkaid/features/authentication/model/userModel.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
 import 'package:pinkaid/utils/helpers/loaders.dart';
 import 'package:pinkaid/utils/helpers/network_manager.dart';

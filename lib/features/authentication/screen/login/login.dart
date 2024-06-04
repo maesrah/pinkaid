@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:iconsax_flutter/iconsax_flutter.dart';
-import 'package:pinkaid/patients_nav_bar.dart';
+
 import 'package:pinkaid/features/authentication/controller/login/loginController.dart';
 
 import 'package:pinkaid/features/authentication/screen/registration/registrationPage.dart';

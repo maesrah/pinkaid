@@ -1,0 +1,79 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:pinkaid/features/patientsFeatures/model/categoryModel.dart';
+import 'package:pinkaid/features/patientsFeatures/model/postModel.dart';
+import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
+import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
+import 'package:pinkaid/utils/exception/exceptions/platform_exceptions.dart';
+import 'package:pinkaid/utils/helpers/firebaseStorage.dart';
+
+class CategoryRepository extends GetxController {
+  static CategoryRepository get instance => Get.find();
+
+  final _firebaseFirestore = FirebaseFirestore.instance;
+
+  Future<List<CategoryModel>> getAllCategories() async {
+    try {
+      final snapshot = await _firebaseFirestore.collection('Categories').get();
+      final list =
+          snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
+      return list;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> uploadDummyData(List<CategoryModel> categories) async {
+    try {
+      ///final storage = Get.put(KFirebaseStorageService());
+
+      for (var category in categories) {
+        await _firebaseFirestore
+            .collection('Categories')
+            .doc(category.id)
+            .set(category.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> uploadPostData(List<Post> posts) async {
+    try {
+      final storage = Get.put(KFirebaseStorageService());
+
+      for (var post in posts) {
+        final thumbnail = await storage.getImageDataFromAssets(post.postUrl);
+
+        final url = await storage.uploadImageData(
+            'Posts/Images', thumbnail, post.postUrl.toString());
+        post.postUrl = url;
+        await _firebaseFirestore
+            .collection('Posts')
+            .doc(post.id)
+            .set(post.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+}

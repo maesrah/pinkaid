@@ -8,7 +8,7 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/features/authentication/controller/registration/registration_controller.dart';
 
 import 'package:pinkaid/generated/l10n.dart';
-import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
+import 'package:pinkaid/features/authentication/model/userModel.dart';
 
 import 'package:pinkaid/theme/textheme.dart';
 

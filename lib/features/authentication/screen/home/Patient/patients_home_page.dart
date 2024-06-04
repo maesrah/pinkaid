@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/gestures.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/features/authentication/controller/user_controller.dart';
 import 'package:pinkaid/features/authentication/screen/profile/profilePage.dart';
@@ -195,7 +193,10 @@ class PatientsHomePage extends StatelessWidget {
                                   child: const Padding(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: kSpaceSectionSm),
-                                    child: DiscussionWidget(),
+                                    child: DiscussionWidget(
+                                      title: 'BreastCancer',
+                                      description: 'Meow meow',
+                                    ),
                                   ),
                                 ),
                               )
@@ -212,8 +213,15 @@ class PatientsHomePage extends StatelessWidget {
 }
 
 class DiscussionWidget extends StatelessWidget {
+  final String title;
+  final String description;
+  final String? imageUrl; // Image URL can be null
+
   const DiscussionWidget({
     super.key,
+    required this.title,
+    required this.description,
+    this.imageUrl,
   });
 
   @override
@@ -226,12 +234,22 @@ class DiscussionWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          if (imageUrl != null) // Check if imageUrl is not null
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16),
+              child: Image.network(
+                imageUrl!,
+                fit: BoxFit.cover,
+                width: double.infinity,
+                height: 200, // You can adjust the height as needed
+              ),
+            ),
           Text(
-            'Breast cancer',
+            title,
             style: KTextTheme.lightTextTheme.headlineSmall,
           ),
           Text(
-            'Worem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis',
+            description,
             style: KTextTheme.lightTextTheme.bodySmall,
           )
         ],

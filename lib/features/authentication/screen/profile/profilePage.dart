@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
+import 'package:get/get.dart';
 import 'package:pinkaid/features/authentication/controller/user_controller.dart';
 import 'package:pinkaid/features/authentication/screen/profile/widget/profileMenu.dart';
 import 'package:pinkaid/features/authentication/widget/appbar.dart';
@@ -16,6 +17,7 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     String role = controller.user.value.role.toString();
+
     String roleName = role.split('.').last;
     return Scaffold(
       appBar: const CustomAppBar(
@@ -32,13 +34,23 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const KCircularImage(
-                      image: KImages.userImage,
-                      width: 80,
-                      height: 80,
-                    ),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final profileImage = networkImage.isNotEmpty
+                          ? networkImage
+                          : KImages.userImage;
+
+                      return KCircularImage(
+                        image: profileImage,
+                        width: 80,
+                        height: 80,
+                        isNetworkImage: networkImage.isNotEmpty,
+                      );
+                    }),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          controller.uploadProfilePicture();
+                        },
                         child: const Text('Change Profile Picture'))
                   ],
                 ),
@@ -71,6 +83,16 @@ class ProfileScreen extends StatelessWidget {
                         backgroundColor: kColorPrimaryLight),
                     child: Text('Log out')),
               ),
+              TextButton(
+                  onPressed: () {
+                    controller.uploadCategoryData();
+                  },
+                  child: Text('Upload Categories')),
+              TextButton(
+                  onPressed: () {
+                    controller.uploadPostsData();
+                  },
+                  child: Text('Upload Posts'))
             ],
           ),
         ),

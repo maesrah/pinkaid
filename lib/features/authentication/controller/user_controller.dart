@@ -1,17 +1,22 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
+import 'package:pinkaid/data/repositories/categories/categories_repository.dart';
 import 'package:pinkaid/data/repositories/user/user_repository.dart';
-import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
+import 'package:pinkaid/features/authentication/model/userModel.dart';
+import 'package:pinkaid/utils/helpers/dummydata.dart';
+import 'package:pinkaid/utils/helpers/loaders.dart';
+import 'package:pinkaid/utils/helpers/pickImage.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
 
   final profileLoading = false.obs;
+  final imageLoading = false.obs;
   Rx<UserModel> user = UserModel.empty().obs;
   final userRepository = Get.put(UserRepository());
   final authRepository = AuthRepository.instance;
-
+  final categoryRepository = Get.put(CategoryRepository());
   void onInit() {
     super.onInit();
     fetchUserRecord();
@@ -33,20 +38,33 @@ class UserController extends GetxController {
     authRepository.signOut();
   }
 
-  // Future<void> saveUserRecord(
-  //     UserCredential? userCredential, UserRole role) async {
-  //   try {
-  //     if (userCredential != null) {
-  //       final user = UserModel(
-  //           id: userCredential.user!.uid,
-  //           fullName: userCredential.user!.displayName ?? '',
-  //           phoneNumber: userCredential.user!.phoneNumber ?? '',
-  //           role: role);
+  uploadProfilePicture() async {
+    try {
+      final image = await ImagePickerDialog.showImageSourceDialog(Get.context!);
+      if (image != null) {
+        imageLoading.value = true;
+        final imageUrl =
+            await userRepository.uploadImage("Users/Images/Profile/", image);
 
-  //       await userRepository.saveUserRecord(user);
-  //     }
-  //   } catch (e) {
-  //     print('Failed to save user record: $e');
-  //   }
-  // }
+        Map<String, dynamic> json = {'profilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+        KLoaders.successSnackBar(
+            title: 'Congratulations',
+            message: 'Your profile image has been updated');
+      }
+    } catch (e) {
+      KLoaders.errorSnackBar(title: 'OhSnap', message: 'Somthing went wrong');
+    }
+  }
+
+  uploadCategoryData() async {
+    await categoryRepository.uploadDummyData(KDummyData.categories);
+  }
+
+  uploadPostsData() async {
+    await categoryRepository.uploadPostData(KDummyData.posts);
+  }
 }

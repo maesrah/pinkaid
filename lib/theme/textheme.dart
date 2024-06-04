@@ -25,7 +25,7 @@ class KTextTheme {
     bodyMedium: const TextStyle().copyWith(
         fontSize: 18, fontWeight: FontWeight.normal, color: Colors.black),
     bodySmall: const TextStyle().copyWith(
-        fontSize: 14, fontWeight: FontWeight.normal, color: Colors.black),
+        fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),
 
     //label
     labelLarge: const TextStyle().copyWith(

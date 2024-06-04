@@ -8,7 +8,7 @@ import 'package:pinkaid/data/repositories/user/user_repository.dart';
 
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
 import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
-import 'package:pinkaid/features/authentication/screen/registration/userModel.dart';
+import 'package:pinkaid/features/authentication/model/userModel.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
 
 import 'package:pinkaid/utils/helpers/loaders.dart';
@@ -136,7 +136,8 @@ class RegistrationController extends GetxController {
             fullName: name,
             phoneNumber: phoneNumber,
             role: userRole,
-            medicalId: medicalId);
+            medicalId: medicalId,
+            profilePicture: '');
 
         firebaseAuth.signInWithCredential(credential).then((UserCredential) {
           if (userRole == UserRole.doctor) {
