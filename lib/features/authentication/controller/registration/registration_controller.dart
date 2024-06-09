@@ -9,6 +9,7 @@ import 'package:pinkaid/data/repositories/user/user_repository.dart';
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
 import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
+import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
 
 import 'package:pinkaid/utils/helpers/loaders.dart';
@@ -62,10 +63,10 @@ class RegistrationController extends GetxController {
         verify_no.value = verificationId;
       },
       codeAutoRetrievalTimeout: (String verificationId) {
-        KLoaders.errorSnackBar(
-            title: 'Error',
-            message:
-                "Code auto-retrieval timeout for verification ID $verificationId");
+        // KLoaders.errorSnackBar(
+        //     title: 'Error',
+        //     message:
+        //         "Code auto-retrieval timeout for verification ID $verificationId");
       },
     );
   }
@@ -143,7 +144,7 @@ class RegistrationController extends GetxController {
           if (userRole == UserRole.doctor) {
             Get.to(() => const DoctorHomeScreen());
           } else {
-            Get.to(() => const PatientsHomePage());
+            Get.to(() => const PatientBottomNavigationBar());
           }
         });
 

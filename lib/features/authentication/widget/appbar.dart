@@ -22,6 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: AppBar(
+        // backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
         leading: showBackArrow
             ? IconButton(

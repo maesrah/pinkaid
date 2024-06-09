@@ -7,6 +7,9 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/features/authentication/controller/user_controller.dart';
 import 'package:pinkaid/features/authentication/screen/profile/profilePage.dart';
+import 'package:pinkaid/features/patientsFeatures/controller/post_controller.dart';
+import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/post_card.dart';
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -26,12 +29,9 @@ class PatientsHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(UserController());
-    final List<String> discussions = [
-      'Discussion 1',
-      'Discussion 2',
-      'Discussion 3',
-    ];
+    final controller = Get.put(PostController());
+    final usercontroller = Get.put(UserController());
+    final List<Post> posts = controller.homePost;
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -61,12 +61,16 @@ class PatientsHomePage extends StatelessWidget {
                       S.of(context).helloLabel,
                       style: KTextTheme.lightTextTheme.titleLarge,
                     ),
-                    Obx(
-                      () => Text(
-                        controller.user.value.fullName,
+                    Obx(() {
+                      if (usercontroller.profileLoading.value) {
+                        return Center();
+                      }
+
+                      return Text(
+                        usercontroller.user.value.fullName,
                         style: KTextTheme.lightTextTheme.titleLarge,
-                      ),
-                    )
+                      );
+                    })
                   ],
                 ),
               ),
@@ -176,34 +180,25 @@ class PatientsHomePage extends StatelessWidget {
                       icon: const Icon(Iconsax.arrow_right_1_copy))
                 ],
               ),
-              discussions.isEmpty
-                  ? const Text('No data')
-                  //
-                  : SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: IntrinsicHeight(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: discussions
-                              .map(
-                                (item) => SizedBox(
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.85,
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: kSpaceSectionSm),
-                                    child: DiscussionWidget(
-                                      title: 'BreastCancer',
-                                      description: 'Meow meow',
-                                    ),
-                                  ),
-                                ),
-                              )
-                              .toList(),
+              Obx(() {
+                if (controller.isLoading.value) {
+                  return CircularProgressIndicator();
+                }
+                return posts.isEmpty
+                    ? const Text('No data')
+                    : SizedBox(
+                        height: 355,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: posts.map((post) {
+                            return SizedBox(
+                              width: MediaQuery.of(context).size.width,
+                              child: PostCard(post: post),
+                            );
+                          }).toList(),
                         ),
-                      ),
-                    ),
+                      );
+              })
             ],
           ),
         ),

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pinkaid/features/patientsFeatures/model/categoryModel.dart';
-import 'package:pinkaid/features/patientsFeatures/model/postModel.dart';
+import 'package:pinkaid/features/patientsFeatures/model/category_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 
 class KDummyData {
   static final List<CategoryModel> categories = [
@@ -63,10 +63,11 @@ class KDummyData {
       title: 'My Journey to Survival',
       caption: 'A story of hope and resilience.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 10))),
-      postUrl: 'assets/images/pexels1.jpg',
-      profImage: 'assets/images/pexels1.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 10))),
+      postUrl:
+          'https://images.pexels.com/photos/579474/pexels-photo-579474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/579474/pexels-photo-579474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '1',
     ),
     Post(
@@ -76,10 +77,11 @@ class KDummyData {
       title: 'Overcoming Breast Cancer',
       caption: 'Sharing my experience and support.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 5))),
-      postUrl: 'assets/images/pexels2.jpg',
-      profImage: 'assets/images/pexels2.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 5))),
+      postUrl:
+          'https://images.pexels.com/photos/3822777/pexels-photo-3822777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/3822777/pexels-photo-3822777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '1',
     ),
 
@@ -91,10 +93,11 @@ class KDummyData {
       title: 'Understanding Breast Cancer',
       caption: 'An overview of breast cancer.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 8))),
-      postUrl: 'assets/images/pexels3.jpg',
-      profImage: 'assets/images/pexels3.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 8))),
+      postUrl:
+          'https://images.pexels.com/photos/5483017/pexels-photo-5483017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/5483017/pexels-photo-5483017.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '2',
     ),
     Post(
@@ -104,10 +107,11 @@ class KDummyData {
       title: 'Breast Cancer Facts',
       caption: 'Key information you need to know.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 3))),
-      postUrl: 'assets/images/pexels4.jpg',
-      profImage: 'assets/images/pexels4.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 3))),
+      postUrl:
+          'https://images.pexels.com/photos/7723582/pexels-photo-7723582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/7723582/pexels-photo-7723582.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '2',
     ),
 
@@ -119,10 +123,11 @@ class KDummyData {
       title: 'Early Detection Saves Lives',
       caption: 'The importance of early breast cancer detection.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 12))),
-      postUrl: 'assets/images/pexels5.jpg',
-      profImage: 'assets/images/pexels5.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 12))),
+      postUrl:
+          'https://images.pexels.com/photos/3759245/pexels-photo-3759245.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/3759245/pexels-photo-3759245.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '3',
     ),
     Post(
@@ -132,10 +137,11 @@ class KDummyData {
       title: 'Diagnosing Breast Cancer',
       caption: 'How breast cancer is diagnosed.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 7))),
-      postUrl: 'assets/images/pexels6.jpg',
-      profImage: 'assets/images/pexels6.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 7))),
+      postUrl:
+          'https://images.pexels.com/photos/5910758/pexels-photo-5910758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/5910758/pexels-photo-5910758.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '3',
     ),
 
@@ -147,10 +153,11 @@ class KDummyData {
       title: 'Breast Cancer Treatment Options',
       caption: 'An overview of treatment options.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 15))),
-      postUrl: 'assets/images/pexels7.jpg',
-      profImage: 'assets/images/pexels7.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 15))),
+      postUrl:
+          'https://images.pexels.com/photos/6303699/pexels-photo-6303699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/6303699/pexels-photo-6303699.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '4',
     ),
     Post(
@@ -160,10 +167,11 @@ class KDummyData {
       title: 'Managing Treatment Side Effects',
       caption: 'Tips for managing side effects of treatment.',
       datePublished:
-          Timestamp.fromDate(DateTime.now().subtract(Duration(days: 9))),
-      postUrl: 'assets/images/pexels8.jpg',
-      profImage: 'assets/images/pexels8.jpg',
-      likes: [],
+          Timestamp.fromDate(DateTime.now().subtract(const Duration(days: 9))),
+      postUrl:
+          'https://images.pexels.com/photos/7723539/pexels-photo-7723539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+      profImage:
+          'https://images.pexels.com/photos/7723539/pexels-photo-7723539.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
       categoryId: '4',
     )
   ];

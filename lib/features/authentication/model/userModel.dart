@@ -7,8 +7,8 @@ enum UserRole {
 
 class UserModel {
   final String id;
-  final String fullName;
-  final String phoneNumber;
+  String fullName;
+  String phoneNumber;
   final UserRole role;
   final String? medicalId;
   String profilePicture;

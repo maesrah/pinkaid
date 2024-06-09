@@ -1,17 +1,15 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
-import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
-import 'package:pinkaid/features/authentication/widget/appbar.dart';
+// import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
+// import 'package:pinkaid/features/authentication/widget/appbar.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/category_controller.dart';
-import 'package:pinkaid/features/patientsFeatures/model/categoryModel.dart';
+
 import 'package:pinkaid/features/patientsFeatures/screen/add_post_screen.dart';
-import 'package:pinkaid/features/patientsFeatures/screen/postPage.dart';
-import 'package:pinkaid/features/patientsFeatures/screen/post_card.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/post_page.dart';
+
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
 
@@ -21,8 +19,7 @@ class DiscussionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categoryController = Get.put(CategoryController());
-    final List<CategoryModel> categories =
-        categoryController.featuredCategories();
+
     return DefaultTabController(
       length: 4,
       child: Scaffold(
@@ -31,9 +28,9 @@ class DiscussionScreen extends StatelessWidget {
           leading: IconButton(
               onPressed: () => Get.back(),
               icon: const Icon(Iconsax.arrow_circle_left_copy)),
-          title: Text('Discussion'),
+          title: const Text('Discussion'),
           bottom: PreferredSize(
-              preferredSize: Size.fromHeight(150),
+              preferredSize: const Size.fromHeight(150),
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: kSpaceScreenPadding),
@@ -50,7 +47,7 @@ class DiscussionScreen extends StatelessWidget {
                             child: const SearchWidget()),
                         IconButton(
                             onPressed: () {
-                              Get.to(() => AddPostScreen());
+                              Get.to(() => const AddPostScreen());
                             },
                             icon: const Icon(Iconsax.add_circle)),
                       ],
@@ -66,14 +63,14 @@ class DiscussionScreen extends StatelessWidget {
                     const SizedBox(
                       height: kSpaceSectionSm,
                     ),
-                    TabBarWidget()
+                    const TabBarWidget()
                   ],
                 ),
               )),
         ),
         body: Obx(() {
           if (categoryController.featuredCategories.isEmpty) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           }
           return TabBarView(
             children: categoryController.featuredCategories

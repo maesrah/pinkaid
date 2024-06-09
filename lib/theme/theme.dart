@@ -26,7 +26,7 @@ const kPrimaryFont = 'Poppins';
 
 const Color kColorPrimaryDark = kColorDarkOrange900;
 const Color kColorPrimary = Color(0xFFF12B6B);
-const Color kColorPrime = Color(0xfffFFDBAA);
+const Color kColorPrime = Color(0xfffFFDBA);
 const Color kColorPrimaryLight = Color(0xFFFFB1B1);
 const Color kColorSecondaryDark = Color(0xFFFF467E);
 const Color kColorSecondary = Color(0xFFFFB1B1);

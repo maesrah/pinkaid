@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pinkaid/data/repositories/user/user_repository.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
-import 'package:pinkaid/features/patientsFeatures/model/postModel.dart';
-import 'package:pinkaid/features/patientsFeatures/screen/discussion_screen.dart';
+import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
+
 import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';
 import 'package:pinkaid/utils/helpers/loaders.dart';
-import 'package:pinkaid/utils/helpers/pickImage.dart';
+import 'package:pinkaid/utils/helpers/pick_image.dart';
 import 'package:pinkaid/utils/utils.dart';
 import 'package:uuid/uuid.dart';
 
@@ -53,7 +53,6 @@ class AddPostController extends GetxController {
         datePublished: DateTime.now(),
         postUrl: photoUrl,
         profImage: user.profilePicture,
-        likes: [],
         categoryId: '1',
       );
 

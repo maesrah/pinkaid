@@ -1,12 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/data/repositories/categories/categories_repository.dart';
+import 'package:pinkaid/data/repositories/post/post_repository.dart';
 import 'package:pinkaid/data/repositories/user/user_repository.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
 import 'package:pinkaid/utils/helpers/dummydata.dart';
 import 'package:pinkaid/utils/helpers/loaders.dart';
-import 'package:pinkaid/utils/helpers/pickImage.dart';
+import 'package:pinkaid/utils/helpers/pick_image.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
@@ -17,6 +19,9 @@ class UserController extends GetxController {
   final userRepository = Get.put(UserRepository());
   final authRepository = AuthRepository.instance;
   final categoryRepository = Get.put(CategoryRepository());
+  final postRepository = Get.put(PostRepository());
+
+  @override
   void onInit() {
     super.onInit();
     fetchUserRecord();
@@ -56,7 +61,27 @@ class UserController extends GetxController {
             message: 'Your profile image has been updated');
       }
     } catch (e) {
-      KLoaders.errorSnackBar(title: 'OhSnap', message: 'Somthing went wrong');
+      KLoaders.errorSnackBar(title: 'OhSnap', message: 'Something went wrong');
+    }
+  }
+
+  updateUserData(String field, String newValue, String userId) async {
+    try {
+      profileLoading.value = true;
+      if (field == 'fullName') {
+        user.value.fullName = newValue;
+      } else if (field == 'phoneNumber') {
+        user.value.phoneNumber = newValue;
+      }
+      Map<String, dynamic> json = {field: newValue};
+      await userRepository.updateSingleField(json);
+    } catch (e) {
+      KLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    } finally {
+      KLoaders.successSnackBar(
+          title: 'Success', message: 'Succesfully update your profile');
+      user.refresh();
+      profileLoading.value = false;
     }
   }
 

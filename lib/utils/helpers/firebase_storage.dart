@@ -1,8 +1,7 @@
-import 'dart:typed_data';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class KFirebaseStorageService extends GetxController {
   static KFirebaseStorageService get instance => Get.find();
@@ -15,6 +14,20 @@ class KFirebaseStorageService extends GetxController {
       final imageData = byteData.buffer
           .asUint8List(byteData.offsetInBytes, byteData.lengthInBytes);
       return imageData;
+    } catch (e) {
+      throw 'Error loading image data: $e';
+    }
+  }
+
+  Future<Uint8List> getImageDataFromNetwork(String url) async {
+    try {
+      final response = await http.get(Uri.parse(url));
+
+      if (response.statusCode == 200) {
+        return response.bodyBytes;
+      } else {
+        throw 'Error fetching image: ${response.statusCode}';
+      }
     } catch (e) {
       throw 'Error loading image data: $e';
     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:pinkaid/features/authentication/controller/user_controller.dart';
+import 'package:pinkaid/features/authentication/screen/profile/updateUserProfile.dart';
 import 'package:pinkaid/features/authentication/screen/profile/widget/profileMenu.dart';
 import 'package:pinkaid/features/authentication/widget/appbar.dart';
 import 'package:pinkaid/features/authentication/widget/circular_image.dart';
@@ -15,7 +16,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = UserController.instance;
+    final controller = Get.put(UserController());
     String role = controller.user.value.role.toString();
 
     String roleName = role.split('.').last;
@@ -27,74 +28,94 @@ class ProfileScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kSpaceScreenPadding),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: double.infinity,
-                child: Column(
-                  children: [
-                    Obx(() {
-                      final networkImage = controller.user.value.profilePicture;
-                      final profileImage = networkImage.isNotEmpty
-                          ? networkImage
-                          : KImages.userImage;
+          child: Obx(() {
+            if (controller.profileLoading.value) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Column(
+                    children: [
+                      Obx(() {
+                        final networkImage =
+                            controller.user.value.profilePicture;
+                        final profileImage = networkImage.isNotEmpty
+                            ? networkImage
+                            : KImages.userImage;
 
-                      return KCircularImage(
-                        image: profileImage,
-                        width: 80,
-                        height: 80,
-                        isNetworkImage: networkImage.isNotEmpty,
-                      );
-                    }),
-                    TextButton(
-                        onPressed: () {
-                          controller.uploadProfilePicture();
-                        },
-                        child: const Text('Change Profile Picture'))
-                  ],
+                        return KCircularImage(
+                          image: profileImage,
+                          width: 80,
+                          height: 80,
+                          isNetworkImage: networkImage.isNotEmpty,
+                        );
+                      }),
+                      TextButton(
+                          onPressed: () {
+                            controller.uploadProfilePicture();
+                          },
+                          child: const Text('Change Profile Picture'))
+                    ],
+                  ),
                 ),
-              ),
-              const Divider(),
-              const SizedBox(height: kSpaceScreenPadding),
-              Text(
-                'Profile Information',
-                style: KTextTheme.lightTextTheme.headlineSmall,
-              ),
-              const SizedBox(height: kSpaceSectionSm),
-              ProfileMenu(
-                  title: S.of(context).phoneNo,
-                  value: controller.user.value.phoneNumber,
-                  onPressed: () {}),
-              ProfileMenu(
-                  title: S.of(context).nameLabel,
-                  value: controller.user.value.fullName,
-                  onPressed: () {}),
-              ProfileMenu(title: 'Role', value: roleName, onPressed: () {}),
-              const SizedBox(
-                height: kSpaceScreenPaddingLg,
-              ),
-              Center(
-                child: TextButton(
+                const Divider(),
+                const SizedBox(height: kSpaceScreenPadding),
+                Text(
+                  'Profile Information',
+                  style: KTextTheme.lightTextTheme.headlineSmall,
+                ),
+                const SizedBox(height: kSpaceSectionSm),
+                ProfileMenu(
+                    title: S.of(context).phoneNo,
+                    value: controller.user.value.phoneNumber,
                     onPressed: () {
-                      controller.signOut();
-                    },
-                    style: TextButton.styleFrom(
-                        backgroundColor: kColorPrimaryLight),
-                    child: Text('Log out')),
-              ),
-              TextButton(
-                  onPressed: () {
-                    controller.uploadCategoryData();
-                  },
-                  child: Text('Upload Categories')),
-              TextButton(
-                  onPressed: () {
-                    controller.uploadPostsData();
-                  },
-                  child: Text('Upload Posts'))
-            ],
-          ),
+                      Get.dialog(UpdateUserDialog(
+                        field: 'phoneNumber',
+                        initialValue: controller.user.value.phoneNumber,
+                        userId: controller.user.value.id,
+                      ));
+                    }),
+                ProfileMenu(
+                    title: S.of(context).nameLabel,
+                    value: controller.user.value.fullName,
+                    onPressed: () {
+                      Get.dialog(UpdateUserDialog(
+                        field: 'fullName',
+                        initialValue: controller.user.value.fullName,
+                        userId: controller.user.value.id,
+                      ));
+                    }),
+                ProfileMenu(title: 'Role', value: roleName, onPressed: () {}),
+                const SizedBox(
+                  height: kSpaceScreenPaddingLg,
+                ),
+                Center(
+                  child: TextButton(
+                      onPressed: () {
+                        controller.signOut();
+                      },
+                      style: TextButton.styleFrom(
+                          backgroundColor: kColorPrimaryLight),
+                      child: Text('Log out')),
+                ),
+                // TextButton(
+                //     onPressed: () {
+                //       controller.uploadCategoryData();
+                //     },
+                //     child: Text('Upload Categories')),
+                // TextButton(
+                //     onPressed: () {
+                //       controller.uploadPostsData();
+                //     },
+                //     child: Text('Upload Posts'))
+              ],
+            );
+          }),
         ),
       ),
     );

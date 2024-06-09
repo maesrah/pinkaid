@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:pinkaid/features/patientsFeatures/model/categoryModel.dart';
-import 'package:pinkaid/features/patientsFeatures/model/postModel.dart';
+import 'package:pinkaid/features/patientsFeatures/model/category_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/platform_exceptions.dart';
-import 'package:pinkaid/utils/helpers/firebaseStorage.dart';
+import 'package:pinkaid/utils/helpers/firebase_storage.dart';
 
 class CategoryRepository extends GetxController {
   static CategoryRepository get instance => Get.find();
@@ -56,7 +56,7 @@ class CategoryRepository extends GetxController {
       final storage = Get.put(KFirebaseStorageService());
 
       for (var post in posts) {
-        final thumbnail = await storage.getImageDataFromAssets(post.postUrl);
+        final thumbnail = await storage.getImageDataFromNetwork(post.postUrl);
 
         final url = await storage.uploadImageData(
             'Posts/Images', thumbnail, post.postUrl.toString());

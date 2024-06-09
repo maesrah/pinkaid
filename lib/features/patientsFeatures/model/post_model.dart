@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:get/get.dart';
 
 class Post {
   String id;
@@ -10,7 +9,7 @@ class Post {
   String caption;
   String postUrl;
   String profImage;
-  RxList<dynamic> likes;
+
   String categoryId;
 
   Post({
@@ -22,9 +21,8 @@ class Post {
     required this.datePublished,
     required this.postUrl,
     required this.profImage,
-    required List<dynamic> likes,
     required this.categoryId,
-  }) : likes = RxList<dynamic>(likes);
+  });
 
   Map<String, dynamic> toJson() {
     return {
@@ -36,7 +34,6 @@ class Post {
       'caption': caption,
       'postUrl': postUrl,
       'profImage': profImage,
-      'likes': likes.toList(),
       'categoryId': categoryId,
     };
   }
@@ -51,7 +48,6 @@ class Post {
       title: json['title'] as String,
       caption: json['caption'] as String,
       profImage: json['profImage'] as String,
-      likes: List<dynamic>.from(json['likes']),
       categoryId: json['categoryId'] as String,
     );
   }
@@ -67,7 +63,6 @@ class Post {
       title: data['title'] as String,
       caption: data['caption'] as String,
       profImage: data['profImage'] as String,
-      likes: List<dynamic>.from(data['likes']),
       categoryId: data['categoryId'] as String,
     );
   }

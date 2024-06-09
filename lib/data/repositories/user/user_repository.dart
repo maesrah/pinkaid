@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
-import 'package:pinkaid/features/patientsFeatures/model/postModel.dart';
+import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/platform_exceptions.dart';
@@ -40,17 +40,13 @@ class UserRepository extends GetxController {
 
   //fetch data
   Future<UserModel> getUserDetails() async {
-    if (_cachedUser != null) {
-      return _cachedUser!;
-    }
     try {
       final documentSnapshot = await _firebaseFirestore
           .collection("Users")
           .doc(AuthRepository.instance.authUser?.uid)
           .get();
       if (documentSnapshot.exists) {
-        _cachedUser = UserModel.fromSnapshot(documentSnapshot);
-        return _cachedUser!;
+        return UserModel.fromSnapshot(documentSnapshot);
       } else {
         return UserModel.empty();
       }
@@ -173,101 +169,5 @@ class UserRepository extends GetxController {
     } catch (e) {
       throw 'Something went wrong. Please try again';
     }
-  }
-
-  Future<List<Post>> getPosts(String categoryId) async {
-    try {
-      final querySnapshot = await _firebaseFirestore
-          .collection("Posts")
-          .where('categoryId', isEqualTo: categoryId)
-          .get();
-      return querySnapshot.docs.map((doc) => Post.fromSnapshot(doc)).toList();
-    } on FirebaseException catch (e) {
-      throw TFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const TFormatException();
-    } on PlatformException catch (e) {
-      throw TPlatformException(e.code).message;
-    } catch (e) {
-      throw 'Something went wrong. Please try again';
-    }
-  }
-
-  Future<List<Post>> getAllPosts() async {
-    try {
-      final querySnapshot = await _firebaseFirestore.collection("Posts").get();
-      return querySnapshot.docs.map((doc) => Post.fromSnapshot(doc)).toList();
-    } on FirebaseException catch (e) {
-      throw TFirebaseException(e.code).message;
-    } on FormatException catch (_) {
-      throw const TFormatException();
-    } on PlatformException catch (e) {
-      throw TPlatformException(e.code).message;
-    } catch (e) {
-      throw 'Something went wrong. Please try again';
-    }
-  }
-
-  Future<String> likePost(String postId, String uid, List likes) async {
-    String res = "Some error occurred";
-    try {
-      if (likes.contains(uid)) {
-        // if the likes list contains the user uid, we need to remove it
-        await _firebaseFirestore.collection('Posts').doc(postId).update({
-          'likes': FieldValue.arrayRemove([uid])
-        });
-      } else {
-        // else we need to add uid to the likes array
-        await _firebaseFirestore.collection('Posts').doc(postId).update({
-          'likes': FieldValue.arrayUnion([uid])
-        });
-      }
-      res = 'success';
-    } catch (err) {
-      res = err.toString();
-    }
-    return res;
-  }
-
-  Future<String> postComment(String postId, String text, String uid,
-      String name, String profilePic) async {
-    String res = "Some error occurred";
-    try {
-      if (text.isNotEmpty) {
-        // if the likes list contains the user uid, we need to remove it
-        String commentId = const Uuid().v1();
-        _firebaseFirestore
-            .collection('posts')
-            .doc(postId)
-            .collection('comments')
-            .doc(commentId)
-            .set({
-          'profilePic': profilePic,
-          'name': name,
-          'uid': uid,
-          'text': text,
-          'commentId': commentId,
-          'datePublished': DateTime.now(),
-        });
-        res = 'success';
-      } else {
-        res = "Please enter text";
-      }
-    } catch (err) {
-      res = err.toString();
-    }
-    return res;
-  }
-
-  // Delete Post
-  Future<String> deletePost(String postId) async {
-    String res = "Some error occurred";
-    try {
-      await _firebaseFirestore.collection('Posts').doc(postId).delete();
-      res = 'success';
-    } catch (err) {
-      res = err.toString();
-    }
-    return res;
   }
 }
