@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
+import 'package:pinkaid/api.dart';
 
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/data/repositories/categories/categories_repository.dart';
+import 'package:pinkaid/data/repositories/doctor/doctor_repository.dart';
 import 'package:pinkaid/data/repositories/post/post_repository.dart';
 import 'package:pinkaid/data/repositories/user/user_repository.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
@@ -20,6 +22,8 @@ class UserController extends GetxController {
   final authRepository = AuthRepository.instance;
   final categoryRepository = Get.put(CategoryRepository());
   final postRepository = Get.put(PostRepository());
+   final doctorRepository = Get.put(DoctorRepository());
+   final apiService=Api();
 
   @override
   void onInit() {
@@ -91,5 +95,13 @@ class UserController extends GetxController {
 
   uploadPostsData() async {
     await categoryRepository.uploadPostData(KDummyData.posts);
+  }
+
+  uploadDoctorData() async {
+    await categoryRepository.uploadDoctorData(KDummyData.doctors);
+  }
+
+  uploadDoctorAPI() async {
+  await apiService.createDoctors(KDummyData.doctors);
   }
 }

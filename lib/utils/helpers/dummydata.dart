@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pinkaid/features/patientsFeatures/model/category_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 
 class KDummyData {
@@ -175,4 +176,26 @@ class KDummyData {
       categoryId: '4',
     )
   ];
+
+  static final List<Doctor> doctors=[
+  Doctor(id: '1', fullName: 'Prof. Dr. See Mee Hong', 
+  position: 'Consultant Oncoplastic Breast Surgeon ',
+  workExperience: 'Senior lecturer at the University of Malaya and a dedicated Consultant Oncoplastic Breast Surgeon at the University Malaya Medical Center (UMMC).', 
+  hospitalWork: 'University Malaya Medical Center',
+   profImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS66XUi38dXAVod2yiDUtZNYrBPIk1Y6DDMqrkfX8u_cKz4hlxGy91cs1NZeGLihUAwf9M&usqp=CAU',
+  ),
+  Doctor(id: '2', fullName: 'Dr. Lai Lee Lee',
+  position: 'Clinical Researcher in Oncoplastic Breast Unit',
+   workExperience: 'Senior lecturer at Universiti Malaya and Clinical Researcher in Oncoplastic Breast Unit at Universiti Malaya Medical Center (UMMC)',
+   hospitalWork: 'University Malaya Medical Center', 
+   profImage:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyLTqn7T8NgjzV5t-jutsKsMfd16-B8zMsqfptTEcIZ_4FMmmSM4EjITq8RZzps0yodSE&usqp=CAU'),
+
+  Doctor(id: '3', fullName:'Prof. Dr. Kartini Binti Rahmat',
+  position: 'Breast Cancer Imaging', 
+  workExperience: 'Head o University of Malaya Research Imaging Centre', 
+  hospitalWork: 'Universit Malaya Medical Centre', 
+  profImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTx8brqt8Uvy88TXV7KiFKjIo48KUdTd5g5LvnuOwZtsxFNv1yGUn7KNmaD6wvp7ax1RvY&usqp=CAU')
+];
 }
+
+

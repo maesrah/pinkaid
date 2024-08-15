@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/consultationmodule/appointment_screen.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/discussion_screen.dart';
 import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/trend_screen.dart';
 
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -47,12 +49,8 @@ class NavigationController extends GetxController {
   final screens = [
     const PatientsHomePage(),
     const DiscussionScreen(),
-    Container(
-      color: Colors.blue,
-    ),
-    Container(
-      color: Colors.red,
-    )
+   const HealthTrendPage(),
+    const AppointmentPage()
   ];
 
   void selectTab(int index) {

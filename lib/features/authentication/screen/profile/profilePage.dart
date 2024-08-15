@@ -113,6 +113,11 @@ class ProfileScreen extends StatelessWidget {
                 //       controller.uploadPostsData();
                 //     },
                 //     child: Text('Upload Posts'))
+                TextButton(
+                    onPressed: () {
+                      controller.uploadDoctorAPI();
+                    },
+                    child: Text('Upload Doctors'))
               ],
             );
           }),
