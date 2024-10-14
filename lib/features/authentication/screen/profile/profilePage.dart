@@ -6,6 +6,8 @@ import 'package:pinkaid/features/authentication/screen/profile/updateUserProfile
 import 'package:pinkaid/features/authentication/screen/profile/widget/profileMenu.dart';
 import 'package:pinkaid/features/authentication/widget/appbar.dart';
 import 'package:pinkaid/features/authentication/widget/circular_image.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/onboarding/first_onboarding_page.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/user_details.dart';
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -17,9 +19,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(UserController());
-    String role = controller.user.value.role.toString();
 
-    String roleName = role.split('.').last;
     return Scaffold(
       appBar: const CustomAppBar(
         showBackArrow: true,
@@ -90,10 +90,18 @@ class ProfileScreen extends StatelessWidget {
                         userId: controller.user.value.id,
                       ));
                     }),
-                ProfileMenu(title: 'Role', value: roleName, onPressed: () {}),
+                Obx(() {
+                  String role = controller.user.value.role.toString();
+
+                  String roleName = role.split('.').last;
+                  return ProfileMenu(
+                      title: 'Role', value: roleName, onPressed: () {});
+                }),
+
                 const SizedBox(
                   height: kSpaceScreenPaddingLg,
                 ),
+
                 Center(
                   child: TextButton(
                       onPressed: () {
@@ -113,11 +121,22 @@ class ProfileScreen extends StatelessWidget {
                 //       controller.uploadPostsData();
                 //     },
                 //     child: Text('Upload Posts'))
+                // TextButton(
+                //     onPressed: () {
+                //       controller.uploadDoctorAPI();
+                //     },
+                //     child: Text('Upload Doctors'))
                 TextButton(
                     onPressed: () {
-                      controller.uploadDoctorAPI();
+                      Get.to(() => FirstOnboardingPage());
                     },
-                    child: Text('Upload Doctors'))
+                    child: Text('OnboardingPage')),
+
+                TextButton(
+                    onPressed: () {
+                      controller.uploadMealData();
+                    },
+                    child: Text('Upload Meals'))
               ],
             );
           }),

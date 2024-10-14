@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pinkaid/api.dart';
 
@@ -24,6 +23,22 @@ class UserController extends GetxController {
   final postRepository = Get.put(PostRepository());
    final doctorRepository = Get.put(DoctorRepository());
    final apiService=Api();
+    var currentIndex = 0.obs;
+      var fillInForm = false.obs; // This indicates if the form is filled
+  var showAlert = true.obs; // This controls whether to show the alert
+
+  void checkFormStatus() {
+    if (!fillInForm.value) {
+      showAlert.value = true; // Set to true to show the alert
+    }
+  }
+
+  void hideAlert() {
+    showAlert.value = false; // Hide the alert
+  }
+  void updateIndex(int index) {
+    currentIndex.value = index;
+  }
 
   @override
   void onInit() {
@@ -36,6 +51,7 @@ class UserController extends GetxController {
       profileLoading.value = true;
       final user = await userRepository.getUserDetails();
       this.user(user);
+      //print(user.toString());
     } catch (e) {
       user(UserModel.empty());
     } finally {
@@ -103,5 +119,9 @@ class UserController extends GetxController {
 
   uploadDoctorAPI() async {
   await apiService.createDoctors(KDummyData.doctors);
+  }
+
+   uploadMealData() async {
+    await categoryRepository.uploadMealData(KDummyData.dummyMeals);
   }
 }

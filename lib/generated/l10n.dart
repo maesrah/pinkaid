@@ -280,10 +280,10 @@ class S {
     );
   }
 
-  /// `Hello`
+  /// `Hello,`
   String get helloLabel {
     return Intl.message(
-      'Hello',
+      'Hello,',
       name: 'helloLabel',
       desc: '',
       args: [],
@@ -535,6 +535,26 @@ class S {
     return Intl.message(
       'Discussion',
       name: 'discussionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activity`
+  String get activityLabel {
+    return Intl.message(
+      'Activity',
+      name: 'activityLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Breast Health Hub`
+  String get bhHub {
+    return Intl.message(
+      'Breast Health Hub',
+      name: 'bhHub',
       desc: '',
       args: [],
     );

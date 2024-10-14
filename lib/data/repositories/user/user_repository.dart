@@ -1,13 +1,15 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
+import 'package:pinkaid/features/patientsFeatures/model/appointment_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/patient_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
@@ -27,6 +29,35 @@ class UserRepository extends GetxController {
           .collection("Users")
           .doc(user.id)
           .set(user.toJson());
+      if(user.role==UserRole.doctor){
+        final doctor = Doctor(
+          id: user.id, 
+          phoneNumber: user.phoneNumber, 
+          profilePicture: user.profilePicture, 
+          fullName: user.fullName, 
+          position: '', 
+          workExperience: '', 
+          hospitalWork: '', 
+          profImage: user.profilePicture,
+          blockedDates: []);
+            
+       //Doctor doctor=Doctor.empty();
+        await _firebaseFirestore
+          .collection("Doctors")
+          .doc(user.id)
+          .set(doctor.toJson());
+
+      }else{
+        Patient patient=Patient.empty();
+        await _firebaseFirestore
+          .collection("Patients")
+          .doc(user.id)
+          .set(patient.toJson());
+
+
+      }
+      
+      
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {
@@ -169,5 +200,33 @@ class UserRepository extends GetxController {
     } catch (e) {
       throw 'Something went wrong. Please try again';
     }
+  }
+
+  Future<void> bookAppt(String apptId, Appointment appt) async {
+    try {
+      await _firebaseFirestore
+          .collection("Appointment")
+          .doc(apptId)
+          .set(appt.toJson());
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<String> deleteAppt(String apptId) async {
+    String res = "Some error occurred";
+    try {
+      await _firebaseFirestore.collection('Appointment').doc(apptId).delete();
+      res = 'success';
+    } catch (err) {
+      res = err.toString();
+    }
+    return res;
   }
 }

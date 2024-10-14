@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pinkaid/features/patientsFeatures/model/category_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/meal_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
@@ -92,6 +93,27 @@ class CategoryRepository extends GetxController {
             .collection('Doctors')
             .doc()
             .set(doctor.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> uploadMealData(List<Meal> meals) async {
+    try {
+      ///final storage = Get.put(KFirebaseStorageService());
+
+      for (var meal in meals) {
+        await _firebaseFirestore
+            .collection('Meals')
+            .doc(meal.id)
+            .set(meal.toJson());
       }
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;

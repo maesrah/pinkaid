@@ -37,7 +37,7 @@ class UserModel {
         id: snapshot.id,
         fullName: data['fullName'] as String,
         phoneNumber: data['phoneNumber'] as String,
-        role: UserRole.values.firstWhere((e) => e.name == data['role']),
+        role: UserRole.values.byName(data['role']),
         medicalId: data['medicalId'] as String?,
         profilePicture: data['profilePicture'] as String);
   }

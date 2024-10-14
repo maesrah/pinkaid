@@ -4,7 +4,9 @@ class Appointment {
   final String id;
   final String patientId;
   final String doctorId;
+  final String doctorName;
   final DateTime appointmentDate;
+  final String appointmentTime;
   final String status; // e.g., 'scheduled', 'completed', 'cancelled'
   final String notes;
 
@@ -12,7 +14,9 @@ class Appointment {
     required this.id,
     required this.patientId,
     required this.doctorId,
+    required this.doctorName,
     required this.appointmentDate,
+    required this.appointmentTime,
     required this.status,
     this.notes = '',
   });
@@ -23,7 +27,9 @@ class Appointment {
       'id': id,
       'patientId': patientId,
       'doctorId': doctorId,
+      'doctorName':doctorName,
       'appointmentDate': appointmentDate.toIso8601String(),
+      'appointmentTime':appointmentTime,
       'status': status,
       'notes': notes,
     };
@@ -35,7 +41,9 @@ class Appointment {
       id: json['id'],
       patientId: json['patientId'],
       doctorId: json['doctorId'],
+      doctorName: json['doctorName'],
       appointmentDate: DateTime.parse(json['appointmentDate']),
+      appointmentTime: json['appointmentTime'],
       status: json['status'],
       notes: json['notes'] ?? '',
     );
@@ -48,7 +56,9 @@ class Appointment {
       id: data['id'],
       patientId: data['patientId'],
       doctorId: data['doctorId'],
+      doctorName: data['doctorName'],
       appointmentDate: DateTime.parse(data['appointmentDate']),
+      appointmentTime: data['appointmentTime'],
       status: data['status'],
       notes: data['notes'] ?? '',
     );

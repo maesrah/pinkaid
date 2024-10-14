@@ -9,6 +9,7 @@ import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/onboarding/first_onboarding_page.dart';
 import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
 import 'package:pinkaid/features/authentication/screen/login/login.dart';
@@ -49,7 +50,7 @@ class AuthRepository extends GetxController {
 
       deviceStorage.read("IsFirstTime") != true
           ? Get.offAll(() => const LoginScreen())
-          : Get.offAll(const LoginScreen());
+          : Get.offAll(const FirstOnboardingPage());
     }
   }
 

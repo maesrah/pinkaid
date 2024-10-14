@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pinkaid/theme/theme.dart';
 
 class KTextTheme {
   KTextTheme._();
@@ -33,4 +34,8 @@ class KTextTheme {
     labelMedium: const TextStyle().copyWith(
         fontSize: 16, fontWeight: FontWeight.normal, color: Colors.black),
   );
+
+  
+
+
 }

@@ -22,7 +22,7 @@
     "resendLabel":"Resend Email",
     "consultationLabel":"Consultation",
     "communityLabel":"Community",
-    "helloLabel":"Hello",
+    "helloLabel":"Hello,",
     "expertiseLabel":"Your Expertise Matter",
     "joinLabel":"Join Our Breast Cancer Discussion Community Today",
     "sessionLabel":"Any session today?",
@@ -47,7 +47,9 @@
     "bookConsultTitle":"Book a consultation?",
     "doctorSub":"Find a doctor?",
     "rescheduleTitle":"Rescheduling your appointment?",
-    "discussionTitle":"Discussion"
+    "discussionTitle":"Discussion",
+    "activityLabel":"Activity",
+    "bhHub":"Breast Health Hub"
 
     
 

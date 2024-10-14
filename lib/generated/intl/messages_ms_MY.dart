@@ -22,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "activityLabel": MessageLookupByLibrary.simpleMessage("Aktiviti"),
         "agreeLabel": MessageLookupByLibrary.simpleMessage(
             "Dengan mendaftar,saya bersetuju dengan "),
         "appName": MessageLookupByLibrary.simpleMessage("Pink Aid"),
+        "bhHub": MessageLookupByLibrary.simpleMessage("Hub Kesihatan Payudara"),
         "bookConsultTitle":
             MessageLookupByLibrary.simpleMessage("Tempah konsultasi?"),
         "communityLabel": MessageLookupByLibrary.simpleMessage("Komuniti"),

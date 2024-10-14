@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:pinkaid/generated/l10n.dart';
-import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
-
-import 'package:pinkaid/theme/textheme.dart';
+import 'package:get/get.dart';
+import 'package:pinkaid/features/authentication/screen/home/Doctor/consultation_page.dart';
+import 'package:pinkaid/features/authentication/screen/home/Doctor/patient_page.dart';
+import 'package:pinkaid/features/authentication/screen/profile/profilePage.dart';
 import 'package:pinkaid/theme/theme.dart';
-import 'package:pinkaid/utils/constant/images_string.dart';
+import 'package:pinkaid/theme/textheme.dart';
+import 'package:pinkaid/generated/l10n.dart';
 
-class DoctorHomeScreen extends StatefulWidget {
+class DoctorHomeScreen extends StatelessWidget {
   const DoctorHomeScreen({super.key});
 
   static const String routeName = 'DoctorHomeScreen';
@@ -23,234 +23,103 @@ class DoctorHomeScreen extends StatefulWidget {
   }
 
   @override
-  State<DoctorHomeScreen> createState() => _DoctorHomeScreenState();
-}
-
-class _DoctorHomeScreenState extends State<DoctorHomeScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: kColorPrimaryLight,
-        centerTitle: false,
         leading: IconButton(
-            onPressed: () {
-              Navigator.of(context).push(PatientsHomePage.route());
-            },
-            icon: const Icon(
-              CupertinoIcons.profile_circled,
-              size: 30,
-            )),
+          onPressed: () {
+            Get.to(() => ProfileScreen());
+          },
+          icon: const Icon(CupertinoIcons.profile_circled, size: 30),
+        ),
+        
+        centerTitle: true,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications))
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications),
+          ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: Padding(
+        padding: const EdgeInsets.all(kSpaceScreenPadding),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                    borderRadius:
-                        BorderRadius.only(bottomRight: Radius.circular(50))),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: kSpaceScreenPadding,
-                      vertical: kSpaceScreenPadding),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Text('Hello,',
-                          style: KTextTheme.lightTextTheme.headlineMedium),
-                      Text(
-                        'Michella',
-                        style: KTextTheme.lightTextTheme.titleLarge,
-                      ),
-                    ],
-                  ),
-                )),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30, vertical: kSpaceScreenPaddingLg),
-                  decoration: BoxDecoration(
-                      color: kColorSecondary,
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Column(
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          CupertinoIcons.calendar,
-                          size: 50,
-                        ),
-                        color: Colors.black,
-                        onPressed: () {},
-                      ),
-                      Text(
-                        S.of(context).consultationLabel,
-                        style: KTextTheme.lightTextTheme.titleSmall,
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 30, vertical: kSpaceScreenPaddingLg),
-                  decoration: BoxDecoration(
-                      color: kColorSecondary,
-                      borderRadius: BorderRadius.circular(16)),
-                  child: Column(
-                    children: [
-                      IconButton(
-                        icon: const Icon(
-                          CupertinoIcons.group_solid,
-                          size: 50,
-                        ),
-                        color: Colors.black,
-                        onPressed: () {},
-                      ),
-                      Text(
-                        S.of(context).communityLabel,
-                        style: KTextTheme.lightTextTheme.titleSmall,
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: kSpaceScreenPadding,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: kSpaceScreenPadding),
-              child: ApptSessionWidget(),
-            ),
-            const SizedBox(
-              height: kSpaceScreenPadding,
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: kSpaceScreenPadding),
-              child: CommunityWidget(),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class CommunityWidget extends StatelessWidget {
-  const CommunityWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: kColorSecondary, borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kSpaceScreenPadding, vertical: kSpaceScreenPadding),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              S.of(context).expertiseLabel,
-              style: KTextTheme.lightTextTheme.headlineSmall,
+              'Welcome, Doctor',
+              style: KTextTheme.lightTextTheme.headlineMedium,
             ),
-            const SizedBox(
-              height: kSpaceScreenPadding,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: Text(
-                    S.of(context).joinLabel,
-                    style: KTextTheme.lightTextTheme.labelMedium,
-                  ),
-                ),
-                const SizedBox(
-                  width: kSpaceSectionMd,
-                ),
-                const Image(
-                  image: AssetImage('assets/images/hands.png'),
-                  height: 100,
-                )
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ApptSessionWidget extends StatelessWidget {
-  const ApptSessionWidget({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-          color: kColorSecondary, borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kSpaceScreenPadding, vertical: kSpaceScreenPadding),
-        child: Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+            const SizedBox(height: 20),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.max,
+              child: GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 16,
+                mainAxisSpacing: 16,
                 children: [
-                  Text(
-                    S.of(context).sessionLabel,
-                    style: KTextTheme.lightTextTheme.headlineSmall,
+                  _HomeOptionCard(
+                    title: S.of(context).consultationLabel,
+                    icon: CupertinoIcons.calendar,
+                    onTap: () {
+                      // Navigate to Consultation Page
+                      Get.to(()=>ConsultationPage());
+                    },
                   ),
-                  const SizedBox(
-                    height: kSpaceScreenPadding - 10,
-                  ),
-                  Text(
-                    maxLines: 2, // Set maxLines to allow wrapping
-                    overflow: TextOverflow.ellipsis,
-                    S.of(context).scheduleLabel,
-                    style: KTextTheme.lightTextTheme.bodySmall,
-                  ),
-                  const SizedBox(
-                    height: kSpaceSectionLg * 2,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: kColorPrimary,
-                        borderRadius: BorderRadius.circular(16)),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      child: Text('Appointment'),
-                    ),
+                  _HomeOptionCard(
+                    title: 'Patient',
+                    icon: CupertinoIcons.group_solid,
+                    onTap: () {
+                      // Navigate to Patients Page
+                      Get.to(() => PatientPage());
+                    },
                   ),
                 ],
               ),
             ),
-            const Image(
-              image: AssetImage(KImages.medical),
-              height: 150,
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _HomeOptionCard extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  final VoidCallback onTap;
+
+  const _HomeOptionCard({
+    required this.title,
+    required this.icon,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: kColorSecondary,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 6,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, size: 50, color: Colors.black),
+            const SizedBox(height: 10),
+            Text(
+              title,
+              style: KTextTheme.lightTextTheme.titleSmall,
+              textAlign: TextAlign.center,
             ),
           ],
         ),

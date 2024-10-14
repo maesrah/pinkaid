@@ -7,7 +7,6 @@ import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
 import 'package:pinkaid/data/repositories/user/user_repository.dart';
 
 import 'package:pinkaid/features/authentication/screen/home/Doctor/doctors_homepage.dart';
-import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
 import 'package:pinkaid/patients_nav_bar.dart';
 import 'package:pinkaid/utils/constant/images_string.dart';

@@ -4,7 +4,9 @@ import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/consultationmodule/appointment_screen.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/discussion_screen.dart';
 import 'package:pinkaid/features/authentication/screen/home/Patient/patients_home_page.dart';
-import 'package:pinkaid/features/patientsFeatures/screen/trend_screen.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/information_module/info_main_page.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/information_module/info_main_page_second.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/activity_module/trend_screen.dart';
 
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -28,15 +30,19 @@ class PatientBottomNavigationBar extends StatelessWidget {
               NavigationDestination(
                   icon: const Icon(Iconsax.home),
                   label: S.of(context).homeLabel),
+              const NavigationDestination(
+                  icon: Icon(Iconsax.book_1),
+                  label: 'Info'),
+              
               NavigationDestination(
+                  icon: Icon(Iconsax.diagram),
+                  label: S.of(context).activityLabel),
+              const NavigationDestination(
+                  icon: Icon(Iconsax.calendar),
+                  label: 'Consult'),
+                  NavigationDestination(
                   icon: const Icon(Iconsax.message),
                   label: S.of(context).forumLabel),
-              NavigationDestination(
-                  icon: const Icon(Iconsax.diagram),
-                  label: S.of(context).trendLabel),
-              NavigationDestination(
-                  icon: const Icon(Iconsax.calendar),
-                  label: S.of(context).consultationLabel),
             ],
           ),
         ),
@@ -48,9 +54,12 @@ class NavigationController extends GetxController {
   final Rx<int> selectedIndex = 0.obs;
   final screens = [
     const PatientsHomePage(),
-    const DiscussionScreen(),
+     const InfoScreen(),
+    //  const InfoMainPageSecond(),
+    
    const HealthTrendPage(),
-    const AppointmentPage()
+    const AppointmentPage(),
+    const DiscussionScreen(),
   ];
 
   void selectTab(int index) {

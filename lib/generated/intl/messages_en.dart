@@ -22,9 +22,11 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "activityLabel": MessageLookupByLibrary.simpleMessage("Activity"),
         "agreeLabel": MessageLookupByLibrary.simpleMessage(
             "By signing in,I am agree with "),
         "appName": MessageLookupByLibrary.simpleMessage("Pink Aid"),
+        "bhHub": MessageLookupByLibrary.simpleMessage("Breast Health Hub"),
         "bookConsultTitle":
             MessageLookupByLibrary.simpleMessage("Book a consultation?"),
         "communityLabel": MessageLookupByLibrary.simpleMessage("Community"),
@@ -45,7 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Your Expertise Matter"),
         "forgotPass": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
         "forumLabel": MessageLookupByLibrary.simpleMessage("Forum"),
-        "helloLabel": MessageLookupByLibrary.simpleMessage("Hello"),
+        "helloLabel": MessageLookupByLibrary.simpleMessage("Hello,"),
         "homeLabel": MessageLookupByLibrary.simpleMessage("Home"),
         "joinLabel": MessageLookupByLibrary.simpleMessage(
             "Join Our Breast Cancer Discussion Community Today"),

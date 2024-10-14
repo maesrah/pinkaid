@@ -66,31 +66,19 @@ class ReplyCard extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              showDialog(
-                useRootNavigator: false,
-                context: context,
-                builder: (context) {
-                  return Dialog(
-                    child: ListView(
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        shrinkWrap: true,
-                        children: [
-                          'Delete',
-                        ]
-                            .map(
-                              (e) => InkWell(
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 12, horizontal: 16),
-                                    child: Text(e),
-                                  ),
-                                  onTap: () {
-                                    controller.deleteComments(comment.id);
-                                    Get.back();
-                                  }),
-                            )
-                            .toList()),
-                  );
+              Get.defaultDialog(
+                title: "Delete Comment",
+                middleText: "Are you sure you want to delete this comment?",
+                textCancel: "No",
+                textConfirm: "Yes",
+                confirmTextColor: Colors.white,
+                onConfirm: () {
+                  
+                  controller.deleteComments(comment.id);
+                  Get.back();
+                },
+                onCancel: () {
+                  Get.back(); 
                 },
               );
             },
