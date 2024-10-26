@@ -5,7 +5,7 @@ import 'package:pinkaid/data/repositories/user/user_repository.dart';
 import 'package:pinkaid/features/authentication/model/userModel.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 
-import 'package:pinkaid/patients_nav_bar.dart';
+
 import 'package:pinkaid/utils/constant/images_string.dart';
 import 'package:pinkaid/utils/helpers/loaders.dart';
 import 'package:pinkaid/utils/helpers/pick_image.dart';

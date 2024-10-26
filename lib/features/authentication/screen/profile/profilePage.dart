@@ -7,7 +7,6 @@ import 'package:pinkaid/features/authentication/screen/profile/widget/profileMen
 import 'package:pinkaid/features/authentication/widget/appbar.dart';
 import 'package:pinkaid/features/authentication/widget/circular_image.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/onboarding/first_onboarding_page.dart';
-import 'package:pinkaid/features/patientsFeatures/screen/user_details.dart';
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -136,7 +135,12 @@ class ProfileScreen extends StatelessWidget {
                     onPressed: () {
                       controller.uploadMealData();
                     },
-                    child: Text('Upload Meals'))
+                    child: Text('Upload Meals')),
+                    TextButton(
+                    onPressed: () {
+                      controller.uploadQuizData();
+                    },
+                    child: Text('Upload Quiz'))
               ],
             );
           }),

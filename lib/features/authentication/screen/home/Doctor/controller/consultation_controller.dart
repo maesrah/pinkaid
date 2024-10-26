@@ -1,17 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pinkaid/data/repositories/authentication/authrepository.dart';
+import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
+import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
+import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
+import 'package:pinkaid/utils/exception/exceptions/platform_exceptions.dart';
 
 class ConsultationController extends GetxController {
-  var selectedDay = DateTime.now().obs;  // Observable for selected date
+  var selectedDay = DateTime.now().obs; // Observable for selected date
   var selectedTime = TimeOfDay.now().obs; // Observable for selected time
   final FirebaseFirestore _db = FirebaseFirestore.instance;
+  var selectedIndex = (-1).obs;
+    final profileLoading = false.obs;
 
-  // Function to update selected day
-  void updateSelectedDay(DateTime day) {
-    selectedDay.value = day;
+  var selectedDays = <DateTime>[].obs; 
+
+  @override
+  onInit(){
+    super.onInit();
+    //getDoctorDetails();
+    fetchBlockedDates(); 
+  }
+
+  void updateSelectedDays(DateTime selectedDay) {
+    if (selectedDays.contains(selectedDay)) {
+      selectedDays.remove(selectedDay);
+    } else if (selectedDays.length < 3) {
+      // Allow only 2-3 days
+      selectedDays.add(selectedDay);
+    } else {
+      Get.snackbar('Limit reached', 'You can only select up to 3 days.');
+    }
   }
 
   // Function to update selected time
@@ -21,79 +43,120 @@ class ConsultationController extends GetxController {
     }
   }
 
-  // Function to block date and time in Firestore
-  Future<void> blockDateAndTime() async {
-    final blockedDateTime = DateTime(
-      selectedDay.value.year,
-      selectedDay.value.month,
-      selectedDay.value.day,
-      selectedTime.value.hour,
-      selectedTime.value.minute,
-    );
+  void selectTime(int index) {
+    selectedIndex.value = index;
+  }
 
+  // Function to block date and time in Firestore
+
+  Future<void> updateBlockDateAndTime() async {
     try {
-      await _db.collection('appointments').add({
-        'doctorId': 'doctor123', // Replace with actual doctor ID
-        'blockedTime': blockedDateTime,
-      });
-      Get.snackbar("Success", "Date and time blocked successfully.");
-    } catch (error) {
-      Get.snackbar("Error", "Failed to block date and time: $error");
+      // Date formatting for each selected day
+      DateFormat formatter = DateFormat('dd-MM-yy');
+
+      // Loop through each selected day and add to Firebase
+      for (var day in selectedDays) {
+        String date = formatter.format(day);
+
+        Map<String, dynamic> blockedDatesEntry = {
+          'date': date,
+          'time': selectedTime.value
+              .toString(), // Adjust based on how you're selecting time
+        };
+
+        await FirebaseFirestore.instance
+            .collection('Doctors')
+            .doc(AuthRepository.instance.authUser?.uid)
+            .update({
+          'blockedDates':
+              FieldValue.arrayUnion([blockedDatesEntry]) // Add each block entry
+        });
+      }
+
+      print('DateBlock(s) added');
+      Get.snackbar("Success", "Date(s) and time(s) blocked successfully.");
+      onInit();
+      selectedDays.clear();
+    } catch (e) {
+      print('Error adding block dates and times: $e');
+      Get.snackbar("Error", "Failed to block the date(s) and time(s).");
     }
   }
 
-  Future<void> updateBlockDateAndTime(
-      ) async {
-
+ Rx<Doctor> doc = Doctor.empty().obs;
+  Future<void> fetchUserRecord() async {
     try {
-    
-      DateFormat formatter = DateFormat('dd-MM-yy'); 
-      String date = formatter.format(selectedDay.value);
-      String formattedTime = selectedTime.value.format(Get.context!);
+      profileLoading.value = true;
+      final doc = await getDoctorDetails();
+      this.doc(doc);
+      //print(user.toString());
+    } catch (e) {
+    doc(Doctor.empty());
+    } finally {
+      profileLoading.value = false;
+    }
+  }
 
+   Future<Doctor> getDoctorDetails() async {
+    try {
+      final documentSnapshot = await FirebaseFirestore.instance
+          .collection("Doctor")
+          .doc(AuthRepository.instance.authUser?.uid)
+          .get();
+      if (documentSnapshot.exists) {
+        return Doctor.fromSnapshot(documentSnapshot);
+      } else {
+        return Doctor.empty();
+      }
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
-    Map<String, dynamic> blockedDatesEntry = {
-        'date': date,
-        'time':selectedTime.value.toString()
-      };
-     
+   var blockedSchedule= <Map<String, dynamic>>[].obs; // Observable list to hold blocked dates
 
-      await FirebaseFirestore.instance
+  // Fetch blocked dates from Firestore
+  Future<void> fetchBlockedDates() async {
+    try {
+      DocumentSnapshot doctorDoc = await FirebaseFirestore.instance
           .collection('Doctors')
           .doc(AuthRepository.instance.authUser?.uid)
-          .update({
-        'blockedDates': FieldValue.arrayUnion([blockedDatesEntry]) // Array update
-      });
+          .get();
 
-      print('DateBlock added');
-      Get.snackbar("Success", "Date and time blocked successfully.");
-      //onInit();
+      if (doctorDoc.exists) {
+        var data = doctorDoc.data() as Map<String, dynamic>;
+
+        if (data.containsKey('blockedDates')) {
+          blockedSchedule.value = List<Map<String, dynamic>>.from(data['blockedDates']);
+        } else {
+          blockedSchedule.clear();
+        }
+      }
     } catch (e) {
-      print('Error adding medication: $e');
+      print('Error fetching blocked dates: $e');
     }
   }
 
-  Future<void> removeMedication(
-      String medication, String frequency, String dosage) async {
-    try {
-      Map<String, dynamic> medicationEntry = {
-        'medical': medication,
-        'frequency': frequency,
-        'dosage': dosage,
-      };
+  Future<void> removeBlockedDate(Map<String, dynamic> blockedDate) async {
+  try {
+    await FirebaseFirestore.instance
+        .collection('Doctors')
+        .doc(AuthRepository.instance.authUser?.uid)
+        .update({
+      'blockedDates': FieldValue.arrayRemove([blockedDate])
+    });
 
-      // Remove the exercise entry from the 'dailyExercises' array
-      await FirebaseFirestore.instance
-          .collection('Patients')
-          .doc(AuthRepository.instance.authUser?.uid)
-          .update({
-        'medication': FieldValue.arrayRemove([medicationEntry])
-      });
-
-      print('Exercise removed for');
-      onInit();
-    } catch (e) {
-      print('Error removing exercise: $e');
-    }
+    blockedSchedule.remove(blockedDate); // Remove locally after successful deletion
+    Get.snackbar("Success", "Blocked date removed successfully.");
+  } catch (e) {
+    print('Error removing blocked date: $e');
   }
+}
+
 }

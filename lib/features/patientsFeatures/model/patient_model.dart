@@ -4,7 +4,7 @@ import 'package:pinkaid/features/authentication/model/userModel.dart';
  
 
 class Patient extends UserModel {
-  final String medicalHistory;
+  Map<String,dynamic> medicalHistory; 
   List<Map<String, dynamic>>medication;
   double weight;
   double height;
@@ -33,6 +33,7 @@ class Patient extends UserModel {
   }) : super(
           fullName: name,
           role: UserRole.patient,
+          fillForm: false,
         );
 
   // Convert Patient object to JSON for Firestore
@@ -60,7 +61,7 @@ class Patient extends UserModel {
       name: json['fullName'] as String,
       phoneNumber: json['phoneNumber'] as String,
       profilePicture: json['profilePicture'] as String,
-      medicalHistory: json['medicalHistory'] as String,
+       medicalHistory:Map<String, dynamic>.from(json['medicalHistory'] ?? []),
       medication: (json['medication'] != null && json['medication'] is List)
     ? List<Map<String, dynamic>>.from(json['medication'])
     : [], 
@@ -104,7 +105,7 @@ class Patient extends UserModel {
       name: data['fullName'] as String,
       phoneNumber: data['phoneNumber'] as String,
       profilePicture: data['profilePicture'] as String,
-      medicalHistory: data['medicalHistory'] as String,
+      medicalHistory: Map<String, dynamic>.from(data['medicalHistory'] ?? []),
       medication: (data['medication'] != null && data['medication'] is List)
     ? List<Map<String, dynamic>>.from(data['medication'])
     : [], 
@@ -131,7 +132,7 @@ class Patient extends UserModel {
       name: '',
       phoneNumber: '',
       profilePicture: '',
-      medicalHistory: '',
+      medicalHistory: {},
       medication: [],
       weight: 0.0,
       height: 0.0,

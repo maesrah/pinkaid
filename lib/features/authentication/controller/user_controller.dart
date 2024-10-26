@@ -21,21 +21,13 @@ class UserController extends GetxController {
   final authRepository = AuthRepository.instance;
   final categoryRepository = Get.put(CategoryRepository());
   final postRepository = Get.put(PostRepository());
-   final doctorRepository = Get.put(DoctorRepository());
-   final apiService=Api();
-    var currentIndex = 0.obs;
-      var fillInForm = false.obs; // This indicates if the form is filled
-  var showAlert = true.obs; // This controls whether to show the alert
+  final doctorRepository = Get.put(DoctorRepository());
+  final apiService = Api();
+  var currentIndex = 0.obs;
+  var fillInForm = true.obs; // This indicates if the form is filled
+  var showAlert = false.obs; // This controls whether to show the alert
+   var dialogShown = false;
 
-  void checkFormStatus() {
-    if (!fillInForm.value) {
-      showAlert.value = true; // Set to true to show the alert
-    }
-  }
-
-  void hideAlert() {
-    showAlert.value = false; // Hide the alert
-  }
   void updateIndex(int index) {
     currentIndex.value = index;
   }
@@ -52,11 +44,31 @@ class UserController extends GetxController {
       final user = await userRepository.getUserDetails();
       this.user(user);
       //print(user.toString());
+     print('FillForm value: ${user.fillForm}'); // Log the fillForm value
+
+    // Set showAlert based on fillForm
+    fillInForm.value=user.fillForm;
+    showAlert.value = !user.fillForm;
     } catch (e) {
       user(UserModel.empty());
     } finally {
       profileLoading.value = false;
     }
+  }
+
+  void checkFormStatus() async {
+    final user = await userRepository.getUserDetails();
+      this.user(user);
+      //print(user.toString());
+     print('FillForm value: ${user.fillForm}'); // Log the fillForm value
+
+    fillInForm.value=user.fillForm;
+    showAlert.value = !user.fillForm;
+  }
+
+  void hideAlert() {
+    showAlert.value = false;
+    dialogShown = false;  // Hide the alert
   }
 
   signOut() {
@@ -118,10 +130,14 @@ class UserController extends GetxController {
   }
 
   uploadDoctorAPI() async {
-  await apiService.createDoctors(KDummyData.doctors);
+    await apiService.createDoctors(KDummyData.doctors);
   }
 
-   uploadMealData() async {
+  uploadMealData() async {
     await categoryRepository.uploadMealData(KDummyData.dummyMeals);
+  }
+
+  uploadQuizData() async {
+    await categoryRepository.uploadQuizData(KDummyData.dummyQuizzes);
   }
 }

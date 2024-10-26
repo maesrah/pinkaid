@@ -137,7 +137,8 @@ class RegistrationController extends GetxController {
             phoneNumber: phoneNumber,
             role: userRole,
             medicalId: medicalId,
-            profilePicture: '');
+            profilePicture: '',
+            fillForm: false);
 
         firebaseAuth.signInWithCredential(credential).then((UserCredential) {
           if (userRole == UserRole.doctor) {

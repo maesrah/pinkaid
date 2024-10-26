@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/appt_controller.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/doctor_controller.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/post_controller.dart';
 import 'package:pinkaid/features/patientsFeatures/model/appointment_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/datetime_coverted.dart';
 import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
+import 'package:pinkaid/features/patientsFeatures/privatechatting/chat_page.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/consultationmodule/book_consultation.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/consultationmodule/list_doctors_page.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/post_card.dart';
@@ -26,10 +28,11 @@ class AppointmentPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        leading: IconButton(
-          onPressed: () => Get.back(),
-          icon: const Icon(Iconsax.arrow_circle_left_copy),
+        title: Text(
+          'Consultation',
+          style: KTextTheme.lightTextTheme.titleMedium,
         ),
+        backgroundColor: kColorPrimaryOne.withOpacity(0.7),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -184,7 +187,8 @@ class DoctorCard extends StatelessWidget {
                       children: [
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: kColorSecondaryLight,
+                                backgroundColor:
+                                    kColorPrimaryOne.withOpacity(0.8),
                                 foregroundColor: Colors.black),
                             onPressed: () {
                               Get.to(() => BookConsultation(
@@ -217,8 +221,17 @@ class ConsultationCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final formattedTime = DateConverted.getTime(appt.appointmentTime);
-    final formattedDate = DateConverted.getDate(appt.appointmentDate);
+    //final formattedDate = DateConverted.getDate(appt.appointmentDate);
     final controller = Get.put(DoctorController());
+    DateFormat formatter = DateFormat('dd-MM-yy');
+    String date = formatter.format(appt.appointmentDate);
+
+    // Check if today is the appointment day and the time has reached
+    bool isToday = DateTime.now().toLocal().day == appt.appointmentDate.day;
+    bool isTimeReached =
+        DateTime.now().isAfter(appt.appointmentDate.add(Duration(
+      hours: int.parse(appt.appointmentTime.split(":")[0]), // Appointment hour
+    )));
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
@@ -263,7 +276,7 @@ class ConsultationCard extends StatelessWidget {
                         width: kSpaceScreenPadding,
                       ),
                       Text(
-                        formattedDate,
+                        date,
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
@@ -287,7 +300,8 @@ class ConsultationCard extends StatelessWidget {
                               Navigator.of(context).pop();
                             },
                             onCancel: () {
-                              Navigator.of(context).pop(); // Close the dialog if the user taps "No"
+                              Navigator.of(context)
+                                  .pop(); // Close the dialog if the user taps "No"
                             },
                           );
                         },
@@ -298,9 +312,16 @@ class ConsultationCard extends StatelessWidget {
                       ),
                       Expanded(
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: (isToday && isTimeReached)
+                              ? () {
+                                  Get.to(() => ChatPage(
+                                        receiverId: appt.patientId,
+                                        receiverName: appt.patientName,
+                                      ));
+                                }
+                              : null, // Disable if it's not the appointment time
                           child: Text(
-                            'Reschedule',
+                            'Start session',
                             style: KTextTheme.lightTextTheme.titleSmall,
                           ),
                         ),

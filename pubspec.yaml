@@ -73,6 +73,17 @@ dependencies:
   flick_video_player: ^0.9.0
   chewie: ^1.8.3
   shimmer: ^3.0.0
+  gradient_borders: ^1.0.1
+  google_generative_ai: ^0.4.6
+  firebase_messaging: ^14.9.4
+  flutter_local_notifications: ^17.2.3
+  dialog_flowtter: ^0.2.0-nullsafety.0
+  dialogflow_flutter_plus: ^0.0.1
+  bubble: ^1.2.1
+ 
+ 
+
+  
 
 
 dev_dependencies:
@@ -105,6 +116,10 @@ flutter:
     - assets/stats/
     - assets/images/animations/loading.json
     - assets/video/
+    - assets/images/animations/celebration.json
+    - assets/images/animations/starPop.json
+    - assets/images/animations/correct.json
+    - assets/images/animations/wrong.json
   
 
   # An image asset can refer to one or more resolution-specific "variants", see

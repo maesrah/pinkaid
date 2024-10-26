@@ -62,6 +62,7 @@ class MealController extends GetxController {
     if (pickedDate != null) {
       selectedDate.value = pickedDate;
     }
+    onInit();
   }
 
   Future<void> fetchUserRecord() async {
@@ -126,7 +127,7 @@ class MealController extends GetxController {
 
   Future<void> updateMeal(String mealType, String meal, int calories) async {
     try {
-      DateTime now = DateTime.now(); // Current date and time
+      DateTime now = selectedDate.value; // Current date and time
       DateFormat formatter = DateFormat('dd-MM-yy'); // Define format
       String date = formatter.format(now);
       Map<String, dynamic> breakfastEntry = {
@@ -152,7 +153,7 @@ class MealController extends GetxController {
 
   Future<void> removeMeal(String mealType, String meal, int calories) async {
     try {
-      DateTime now = DateTime.now(); // Current date and time
+      DateTime now = selectedDate.value; // Current date and time
       DateFormat formatter = DateFormat('dd-MM-yy'); // Define format
       String date = formatter.format(now);
 

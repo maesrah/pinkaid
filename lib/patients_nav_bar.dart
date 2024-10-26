@@ -22,26 +22,29 @@ class PatientBottomNavigationBar extends StatelessWidget {
           () => NavigationBar(
             height: 80,
             elevation: 0,
+            indicatorColor: kColorPrimaryOne.withOpacity(0.1),
             selectedIndex: controller.selectedIndex.value,
+            indicatorShape: UnderlineInputBorder(),
+            backgroundColor: kColorPrimary.withOpacity(0.1),
             onDestinationSelected: (index) =>
                 controller.selectedIndex.value = index,
-            backgroundColor: kColorInfo,
+            //backgroundColor: kColorPrimaryOne.withOpacity(0.7),
             destinations: [
               NavigationDestination(
-                  icon: const Icon(Iconsax.home),
+                  icon: const Icon(Iconsax.home,color: Colors.black,),
                   label: S.of(context).homeLabel),
               const NavigationDestination(
-                  icon: Icon(Iconsax.book_1),
+                  icon: Icon(Iconsax.book_1,color: Colors.black,),
                   label: 'Info'),
               
               NavigationDestination(
-                  icon: Icon(Iconsax.diagram),
+                  icon: Icon(Iconsax.diagram, color: Colors.black,),
                   label: S.of(context).activityLabel),
               const NavigationDestination(
-                  icon: Icon(Iconsax.calendar),
+                  icon: Icon(Iconsax.calendar,color: Colors.black,),
                   label: 'Consult'),
                   NavigationDestination(
-                  icon: const Icon(Iconsax.message),
+                  icon: const Icon(Iconsax.message,color: Colors.black,),
                   label: S.of(context).forumLabel),
             ],
           ),

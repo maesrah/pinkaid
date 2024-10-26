@@ -1,11 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:pinkaid/features/notification/notification_service.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/doctor_controller.dart';
 import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:uuid/uuid.dart';
 
 class BookConsultation extends StatelessWidget {
   BookConsultation({super.key, required this.doctor});
@@ -61,7 +65,7 @@ class BookConsultation extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         SizedBox(
@@ -115,7 +119,7 @@ class BookConsultation extends StatelessWidget {
                     return TableCalendar(
                       focusedDay: controller.selectedDate.value,
                       firstDay: DateTime.now(),
-                      lastDay: DateTime.now().add(Duration(days: 365)),
+                      lastDay: DateTime.now().add(const Duration(days: 365)),
                       calendarFormat: CalendarFormat.month,
                       currentDay: controller.selectedDate.value,
                       rowHeight: 48,
@@ -241,11 +245,36 @@ class BookConsultation extends StatelessWidget {
                       : () {
                           controller.bookAppointment(
                               doctor.id, doctor.fullName);
-                          controller.selectedDate.value = DateTime.now();
+                         
+                          
+                          // Construct the DateTime for the selected time slot
+                          final selectedDate = controller.selectedDate.value;
+                          final timeSlotHour = controller.selectedIndex.value + 9;
 
-                          // Reset the selected time index (no time is selected)
+                          // Determine AM/PM adjustment
+                          final isPM = timeSlotHour >= 12;
+                          final selectedTime = DateTime(
+                            selectedDate.year,
+                            selectedDate.month,
+                            selectedDate.day,
+                            isPM && timeSlotHour != 12
+                                ? timeSlotHour - 12
+                                : timeSlotHour, // Adjust for PM (12-hour clock)
+                          );
+
+                          // Schedule the notification
+                          var uuid = const Uuid().v1();
+                          int id = utf8.encode(uuid).fold(0, (prev, elem) => prev + elem);
+                          NotificationService().scheduleNotification(
+                            id: id,
+                            title: 'Appointment Reminder',
+                            body: 'You have an appointment at $timeSlotHour:00 ${isPM ? "PM" : "AM"}!',
+                            scheduledNotificationDateTime: selectedTime,
+                          );
+                          controller.selectedDate.value = DateTime.now();
                           controller.selectedIndex.value = -1;
                         },
+                        
                   style: ElevatedButton.styleFrom(
                     backgroundColor: controller.selectedIndex.value == -1
                         ? Colors.grey

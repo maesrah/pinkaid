@@ -15,6 +15,7 @@ class InfoScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+           backgroundColor: kColorPrimaryOne.withOpacity(0.7),
           automaticallyImplyLeading: false,
           title: Text(S.of(context).bhHub,style: KTextTheme.lightTextTheme.bodyMedium!.copyWith(fontWeight: FontWeight.bold)),
           bottom: PreferredSize(

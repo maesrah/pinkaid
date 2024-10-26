@@ -71,7 +71,7 @@ class MealPage extends StatelessWidget {
                   children: [
                     Text('Breakfast',style: KTextTheme.lightTextTheme.titleSmall,),
                     Obx(() {
-                        DateTime now = DateTime.now();
+                        DateTime now = controller.selectedDate.value;
                         DateFormat formatter = DateFormat('dd-MM-yy');
                         String formattedDate = formatter.format(now);
 
@@ -151,7 +151,7 @@ class MealPage extends StatelessWidget {
                   children: [
                     Text('Lunch',style: KTextTheme.lightTextTheme.titleSmall,),
                     Obx(() {
-                        DateTime now = DateTime.now();
+                        DateTime now = controller.selectedDate.value;
                         DateFormat formatter = DateFormat('dd-MM-yy');
                         String formattedDate = formatter.format(now);
 
@@ -234,7 +234,7 @@ class MealPage extends StatelessWidget {
                   children: [
                     Text('Dinner',style: KTextTheme.lightTextTheme.titleSmall,),
                     Obx(() {
-                        DateTime now = DateTime.now();
+                        DateTime now =  controller.selectedDate.value;
                         DateFormat formatter = DateFormat('dd-MM-yy');
                         String formattedDate = formatter.format(now);
 
@@ -317,7 +317,7 @@ class MealPage extends StatelessWidget {
                   children: [
                     Text('Snack',style: KTextTheme.lightTextTheme.titleSmall,),
                     Obx(() {
-                        DateTime now = DateTime.now();
+                        DateTime now =  controller.selectedDate.value;
                         DateFormat formatter = DateFormat('dd-MM-yy');
                         String formattedDate = formatter.format(now);
 

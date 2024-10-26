@@ -5,6 +5,7 @@ import 'package:pinkaid/features/patientsFeatures/model/category_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/meal_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/quiz_model.dart';
 import 'package:pinkaid/utils/exception/exceptions/firebase_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/format_exceptions.dart';
 import 'package:pinkaid/utils/exception/exceptions/platform_exceptions.dart';
@@ -125,4 +126,36 @@ class CategoryRepository extends GetxController {
       throw 'Something went wrong. Please try again';
     }
   }
+
+  Future<void> uploadQuizData(List<Quiz> quizzes) async {
+  try {
+    final storage = Get.put(KFirebaseStorageService());
+
+    for (var quiz in quizzes) {
+      // Check if it's an image-based quiz and upload the image if imageUrl is not null
+      if (quiz.imageUrl != null && quiz.imageUrl!.isNotEmpty) {
+        final imageData = await storage.getImageDataFromNetwork(quiz.imageUrl!);
+
+        final url = await storage.uploadImageData(
+            'Quizzes/Images', imageData, quiz.imageUrl.toString());
+        quiz.imageUrl = url; // Update image URL after uploading
+      }
+
+      // Upload quiz data to Firestore
+      await _firebaseFirestore
+          .collection('Quizzes')
+          .doc(quiz.quizId)
+          .set(quiz.toJson());
+    }
+  } on FirebaseException catch (e) {
+    throw TFirebaseException(e.code).message;
+  } on FormatException catch (_) {
+    throw const TFormatException();
+  } on PlatformException catch (e) {
+    throw TPlatformException(e.code).message;
+  } catch (e) {
+    throw 'Something went wrong. Please try again';
+  }
+}
+
 }

@@ -24,10 +24,9 @@ class DiscussionScreen extends StatelessWidget {
       length: 4,
       child: Scaffold(
         appBar: AppBar(
+           //backgroundColor: kColorPrimaryOne,
           automaticallyImplyLeading: false,
-          leading: IconButton(
-              onPressed: () => Get.back(),
-              icon: const Icon(Iconsax.arrow_circle_left_copy)),
+         
           title: const Text('Discussion'),
           bottom: PreferredSize(
               preferredSize: const Size.fromHeight(150),
@@ -105,7 +104,8 @@ class TabBarWidget extends StatelessWidget {
       }
       return TabBar(
         isScrollable: true,
-        indicatorColor: kColorPrimaryLight,
+        
+        indicatorColor: kColorPrimaryOne,
         labelColor: Colors.black,
         unselectedLabelColor: Colors.grey,
         tabs: categoryController.featuredCategories

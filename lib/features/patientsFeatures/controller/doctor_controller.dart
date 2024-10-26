@@ -44,6 +44,7 @@ class DoctorController extends GetxController {
 
  void selectDate(DateTime date, Doctor doctor) async {
   selectedDate.value = date;
+  fetchDoctor();
 
   // Initially assume it's not blocked
   isBlocked.value = false;
@@ -72,6 +73,7 @@ class DoctorController extends GetxController {
   } else {
     // Fetch unavailable bookings if not blocked or weekend
     await fetchUnavailable(doctor, date);
+    
   }
 }
 
@@ -99,6 +101,7 @@ class DoctorController extends GetxController {
       isLoading.value = false;
     }
   }
+
 
   Future<void> fetchRecord() async {
     try {
@@ -142,6 +145,8 @@ class DoctorController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  
 
   Future<List<Appointment>> fetchUnavailable(Doctor doctor,DateTime selectedDate) async {
     try {
@@ -209,7 +214,7 @@ class DoctorController extends GetxController {
         appointmentDate: appointmentDate,
         status: 'scheduled',
         appointmentTime: appointmentTime,
-        doctorName: doctorName,
+        doctorName: doctorName, patientName: user.fullName,
       );
 
       userRepository.bookAppt(appointment, appt);

@@ -36,6 +36,7 @@ class TrendController extends GetxController {
   final dosageController = TextEditingController();
   final frequencyController = TextEditingController();
   var touchedBarIndex = (-1).obs;
+  var exerciseTouchedBar=(-1).obs;
 
   @override
   void onInit() {
@@ -457,7 +458,10 @@ void updateDailyProgress(Map<String, dynamic> dailyData) {
 
   // Calculate percentage as a fraction of completed tasks
   double percentage = completedTasks / totalTasks;
-  percentageIndicator.value = percentage; // Update the percentage
+  percentageIndicator.value = percentage; 
+  onInit();
 }
+
+
 
 }

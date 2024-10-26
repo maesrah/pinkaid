@@ -53,6 +53,7 @@ class DoctorRepository extends GetxController {
     final querySnapshot = await _firebaseFirestore
         .collection("Appointment")
         .where("patientId", isEqualTo:AuthRepository.instance.authUser?.uid )
+         .where("status", isEqualTo: "scheduled")
         .get();
     return querySnapshot.docs.map((doc) => Appointment.fromSnapshot(doc)).toList();
   } on FirebaseException catch (e) {
@@ -64,7 +65,27 @@ class DoctorRepository extends GetxController {
   } catch (e) {
     throw 'Something went wrong. Please try again';
   }
+
+
 }
+
+Future<List<Appointment>> getDoctorPatient() async {
+  try {
+   final querySnapshot = await _firebaseFirestore
+        .collection("Appointment")
+        .where("doctorId", isEqualTo: AuthRepository.instance.authUser?.uid)
+        .where("status", isEqualTo: "scheduled") // Add this condition to filter by status
+        .get();
+    return querySnapshot.docs.map((doc) => Appointment.fromSnapshot(doc)).toList();
+  } on FirebaseException catch (e) {
+    throw TFirebaseException(e.code).message;
+  } on FormatException catch (_) {
+    throw const TFormatException();
+  } on PlatformException catch (e) {
+    throw TPlatformException(e.code).message;
+  } catch (e) {
+    throw 'Something went wrong. Please try again';
+  }}
 
 Future<List<Appointment>> getUnavailableBooking(String doctorId) async {
   try {
@@ -112,5 +133,4 @@ Future<List<Appointment>> getUnavailableBooking(String doctorId) async {
     return res;
   }
 
-   
 }

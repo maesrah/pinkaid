@@ -28,12 +28,12 @@ class _HealthTrendPageState extends State<HealthTrendPage> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(TrendController());
-    const List<Color> kColorPrimaryList = [Colors.blue, Colors.green];
+    const List<Color> kColorPrimaryList = [kColorPrimaryOne, kColorDeepPurple];
     List<PieChartSectionData> showingSections() {
       return List.generate(
         2,
         (i) {
-          var color0 = kColorSecondary;
+          var color0 = kColorPrimaryOne;
 
           switch (i) {
             case 0:
@@ -54,7 +54,7 @@ class _HealthTrendPageState extends State<HealthTrendPage> {
                   }));
             case 1:
               return PieChartSectionData(
-                color: Colors.white,
+                color: Colors.grey.shade100,
                 value: 75,
                 title: '',
                 radius: 45,
@@ -247,7 +247,7 @@ class _HealthTrendPageState extends State<HealthTrendPage> {
                   children: [
                     Obx(() {
                       return SizedBox(
-                        width: MediaQuery.of(context).size.width-100,
+                        width: MediaQuery.of(context).size.width - 100,
                         child: Text(
                           controller.percentageIndicator.value ==
                                   1.0 // 1.0 means 100%
@@ -281,7 +281,6 @@ class _HealthTrendPageState extends State<HealthTrendPage> {
                         circularStrokeCap: CircularStrokeCap.round,
                       );
                     }),
-                  
                   ],
                 ),
                 const SizedBox(
@@ -312,7 +311,6 @@ class _HealthTrendPageState extends State<HealthTrendPage> {
                                     fontSize: 14,
                                     fontWeight: FontWeight.w700),
                               ),
-                             
                               SizedBox(
                                 height:
                                     MediaQuery.of(context).size.width * 0.05,

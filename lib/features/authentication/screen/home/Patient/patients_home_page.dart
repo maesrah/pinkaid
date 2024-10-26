@@ -8,11 +8,15 @@ import 'package:get/get.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 import 'package:pinkaid/features/authentication/controller/user_controller.dart';
 import 'package:pinkaid/features/authentication/screen/profile/profilePage.dart';
+import 'package:pinkaid/features/patientsFeatures/controller/doctor_controller.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/post_controller.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/chatbot_screen.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/consultationmodule/appointment_screen.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/gamemodule/game_page.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/onboarding/first_onboarding_page.dart';
 import 'package:pinkaid/features/patientsFeatures/screen/post_card.dart';
+import 'package:pinkaid/features/patientsFeatures/test_chat.dart';
 import 'package:pinkaid/generated/l10n.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
@@ -34,6 +38,7 @@ class PatientsHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(PostController());
     final usercontroller = Get.put(UserController());
+    
     final List<Post> posts = controller.homePost;
     final List<String> myImages = [
       'assets/stats/img1.jpg',
@@ -66,12 +71,8 @@ class PatientsHomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.notifications)),
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(CupertinoIcons.question_circle))
-        ],
+         //backgroundColor: kColorPrimaryOne.withOpacity(0.8),
+        
         leading: IconButton(
             onPressed: () {
               Get.to(() => const ProfileScreen());
@@ -79,14 +80,16 @@ class PatientsHomePage extends StatelessWidget {
             icon: const Icon(CupertinoIcons.profile_circled)),
       ),
       body: SingleChildScrollView(
+        
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: kSpaceScreenPadding),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              
               Obx(() {
-                if (usercontroller.showAlert.value &&
-                    !usercontroller.fillInForm.value) {
+                if (usercontroller.showAlert.value && !usercontroller.fillInForm.value
+                    ) {
                   // Show AlertDialog without replacing any content
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     showDialog(
@@ -119,6 +122,7 @@ class PatientsHomePage extends StatelessWidget {
                 }
                 return const SizedBox.shrink();
               }),
+              SizedBox(height: 10,),
               SizedBox(
                 width: double.infinity,
                 child: Row(
@@ -144,6 +148,9 @@ class PatientsHomePage extends StatelessWidget {
               const SizedBox(
                 height: kSpaceScreenPadding,
               ),
+              
+                
+            
               CarouselSlider(
                 options: CarouselOptions(
                   enlargeCenterPage: true,
@@ -201,9 +208,8 @@ class PatientsHomePage extends StatelessWidget {
                   }).toList(),
                 );
               }),
-              const SizedBox(
-                height: kSpaceScreenPadding,
-              ),
+            
+             
 
               Container(
                 width: MediaQuery.of(context).size.width,
@@ -313,6 +319,47 @@ class PatientsHomePage extends StatelessWidget {
                   ],
                 ),
               ),
+                const SizedBox(
+                height: kSpaceScreenPadding,
+              ),
+               Text(
+                'Scheduled appointment',
+                style: KTextTheme.lightTextTheme.bodySmall!
+                    .copyWith(fontWeight: FontWeight.bold),
+              ),
+              // const SizedBox(height: kSpaceScreenPadding),
+              //  Obx(() {
+              //   if (doctorController.isLoading.value) {
+              //     return const Center();
+              //   }
+
+              //   return FutureBuilder(
+              //     future: doctorController.fetchAppointment(),
+              //     builder: ((context, snapshot) {
+              //       if (snapshot.connectionState == ConnectionState.waiting) {
+              //         return const Center(child: CircularProgressIndicator());
+              //       } else if (snapshot.hasError) {
+              //         return const Center(
+              //             child: Text('Error loading appointment'));
+              //       } else if (!snapshot.hasData ||
+              //           doctorController.apptsList.isEmpty) {
+              //         return const Column(
+              //           crossAxisAlignment: CrossAxisAlignment.start,
+              //             children:[ const Text('No appointment today')]);
+              //       } else {
+              //         return ListView.builder(
+              //           shrinkWrap: true,
+              //           physics: const NeverScrollableScrollPhysics(),
+              //           itemCount: doctorController.apptsList.length,
+              //           itemBuilder: (_, index) => ConsultationCard(
+              //             appt: doctorController.apptsList[index],
+              //           ),
+              //         );
+              //       }
+              //     }),
+              //   );
+              // }),
+              //const SizedBox(height: kSpaceScreenPadding),
               const SizedBox(
                 height: kSpaceScreenPadding,
               ),
@@ -327,22 +374,24 @@ class PatientsHomePage extends StatelessWidget {
                             horizontal: kSpaceScreenPadding,
                             vertical: kSpaceScreenPadding),
                         decoration: BoxDecoration(
-                            color: kColorSecondaryLight,
+                            color: Color(0xff982176),
                             borderRadius: BorderRadius.circular(16)),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Icon(
                               Iconsax.document_favorite_copy,
+                              color: kColorPrimaryLight,
                               size: 50,
                             ),
                             Text(
                               S.of(context).journeyHeader,
-                              style: KTextTheme.lightTextTheme.titleSmall,
+                              
+                              style: KTextTheme.lightTextTheme.titleSmall!.copyWith(color: Colors.white),
                             ),
                             Text(
                               S.of(context).journeySub,
-                              style: KTextTheme.lightTextTheme.bodySmall,
+                              style: KTextTheme.lightTextTheme.bodySmall!.copyWith(color: Colors.white),
                             )
                           ],
                         ),
@@ -352,25 +401,29 @@ class PatientsHomePage extends StatelessWidget {
                       width: 10,
                     ),
                     Expanded(
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: kSpaceScreenPadding,
-                            vertical: kSpaceScreenPadding),
-                        decoration: BoxDecoration(
-                            color: kColorPrimaryLight,
-                            borderRadius: BorderRadius.circular(16)),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Icon(
-                              Iconsax.game_copy,
-                              size: 50,
-                            ),
-                            Text(
-                              S.of(context).quizHeader,
-                              style: KTextTheme.lightTextTheme.titleSmall,
-                            ),
-                          ],
+                      child: GestureDetector(
+                        onTap: (){Get.to(()=>GamePage());},
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: kSpaceScreenPadding,
+                              vertical: kSpaceScreenPadding),
+                          decoration: BoxDecoration(
+                              color: kColorPrimaryLight,
+                              borderRadius: BorderRadius.circular(16)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Icon(
+                                Iconsax.game_copy,
+                                color: Color(0xff982176),
+                                size: 50,
+                              ),
+                              Text(
+                                S.of(context).quizHeader,
+                                style: KTextTheme.lightTextTheme.titleSmall,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -413,7 +466,7 @@ class PatientsHomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          Get.to(const ChatbotScreen());
+         Get.to(()=>ChatbotScreen());
         },
         label: const Icon(Iconsax.message_question_copy),
         tooltip: 'Need Assistant?',
@@ -443,7 +496,7 @@ class HealthWidget extends StatelessWidget {
           CircleAvatar(
             radius: 25, // Adjust the radius as needed
             backgroundColor:
-                kColorSecondaryLight, // Set background color if needed
+                kColorPrimaryOne.withOpacity(0.7), // Set background color if needed
             child: ClipOval(
               child: Image.asset(
                 imagePath,

@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "pinkaid",
+  "private_key_id": "2b224f5a8013c3cddad104d449f32cf84c04285f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCnLemWgtAmSo5I\nDYeH35YNZqOIyL5jyLlDbvHPYh9ThW6Ga74HnkNQg43f69wta4VaMkxMpl0k76Ma\n4rs43dwGXn3D/Q2oOmmGegheYoc7z3+oNJbixQIb1D+K+LYIRrdtz0Hiyo5ABn8+\ncJduzsYvHNDM35UOQEc6d4efYjOAqaH3J1KepVkQZr/u4LZvl7p/u0T3TBeDHbIH\nGAPoYbc1MI7HBLy846HL7XC8DXkyzqFD7xHwCfQ71/3ZrjKCIxDzma956Q6GoSzr\nz/yVPvUdLR7NqwFdwNNLtSW52IO5PhhXJpKiPG+/QakOhUGALx4Iiz4ylu4OWKLh\n6wyn+VtjAgMBAAECggEAPQBWRxrFa+txfl4dcZlGje5BRtSFEDD6VN5DMrppltbN\nzRO8W9hGVLckCixsg1BD8PUAfUmJHESqvdE0opvlwJczCdQo6xUhUzXtHs+R6+Ob\nf5ts4SMk0VXBt+pntZ5kKRfiwSfK/xa/0F9SClc93owDrnX41CHlO7LI1IIHK+9h\nyfdy+yS7kRHyb2fSzHNiyRmDkHt4yU90AjzgIxcilMB4a//1qKg0mRw+SkhqPaRG\n9Hw5jO2zXE/ac0iOjLSGKlohVldSb6Ygy6wzbqYlYxqAivsiu+MKPVJfFz0zpJjt\neXypP1IqL0YiO4raoJ+uUAs7awTvJJkiE672GM5yuQKBgQDouPcbiknN0gB0d0to\nbUO5z8+rY9Vwwrt5vDYg1b4MEvsLxj0uemXs2l/XYtMFAz7gJQYXH3SYgCqkF4T2\nZlIeMYsaU2OfDaPgrEG1rPBUS/1axbPDZdGRehWOfY9z9nnf5AzAGSl6a5/EQl53\nYkYTzqe1+i+Hhzllxl8sSLKlSQKBgQC35qo+r0Kha/ofoBbQjSQhsm1v0JyKK7pe\nbYwV9IniEEAbqmOwqOjdFxkfIbxIEZ/GFG7dVLR29jdt8nPPMixfW9htlutXUmbU\nrvcg4O+Mk4EN83f7KYH3QhzsZQKo5W3onbpMBNEl0RgyiCEipOZ0jxjFDNtFu2By\npuFSoF53SwKBgCJhgRAug+zGQ47xONC6o7DFxLZbT2MTQcMgTRbYvPTnsPLyXIOL\nTZeKQ3J8hRROgHF4xsePvBfzh1kqqFgGkccoJpbDDwqmZzl/+U0vuWmauFk6r+4E\nEsvdL2YXoqPNHAA5nrCahwgw8i96Zp5YhGXUt+4ogfERxycEAXd3Xf0RAoGAPnlm\nLJVtlVkRR90i4waP18K92taL14Szc5DTnkHM9bd/j+Z6p3E6aqGGL0VOqU0Tcj9O\nynIUPLW4bumG3kS1Pk/9Xn1+xdOAi5BE9C52MtOJbCvh/rlDJbSYDtbh6G7Iv9WV\njG22f5phFgmY+CP9Bmv2hjqv4yicw1ZeBavla7ECgYAxQuvBvw9nVVl+TyyZ/nRD\n4KsAvRPAU2e+qjEZJEnpdO67ZF7IMvq1YoSPV48Z9sBMQbFAGA2XE2nC0GQXNeQ5\n7jVOiS5HNIB8cf/fGvMw1UbQ4Ed6wfVdmDQMNkEFsgKfxKyLYVOu80jXLUeHOAIa\n4wrdVmfHSK4XyGvGV15nRA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "flutter-pinkaid@pinkaid.iam.gserviceaccount.com",
+  "client_id": "113507215422027342896",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/flutter-pinkaid%40pinkaid.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

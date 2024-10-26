@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pinkaid/features/authentication/controller/user_controller.dart';
+
 import 'package:pinkaid/features/patientsFeatures/controller/trend_controller.dart';
 
 class AddMedication extends StatelessWidget {
   
   final String userId;
 
-  AddMedication({super.key, required this.userId});
+  const AddMedication({super.key, required this.userId});
 
   @override
   Widget build(BuildContext context) {

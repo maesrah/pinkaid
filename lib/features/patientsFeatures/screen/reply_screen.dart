@@ -24,7 +24,7 @@ class ReplyScreen extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height,
       decoration: const BoxDecoration(
-          color: kColorSecondaryLight,
+          color: kColorPrimaryLight,
           borderRadius: BorderRadius.only(topLeft: Radius.circular(50))),
       child: Column(
         children: [

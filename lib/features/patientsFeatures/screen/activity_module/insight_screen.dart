@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:pinkaid/features/patientsFeatures/controller/trend_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:pinkaid/features/patientsFeatures/screen/exercise_chart.dart';
 import 'package:pinkaid/theme/textheme.dart';
 import 'package:pinkaid/theme/theme.dart';
 
@@ -17,6 +18,12 @@ class InsightScreen extends StatelessWidget {
     Map<String, int> sleepFrequency =
         getSleepFrequencyForWeek(controller.patient.value.dailyTracking);
     List<FlSpot> sleepSpots = convertToFlSpots(sleepFrequency);
+    double averageCalory=getAverageCaloriesForWeek(controller.patient.value.dailyTracking);
+    double averageSleep=getAverageSleepForWeek(controller.patient.value.dailyTracking);
+    //String highestSymptom=getHighestSymptomFrequencyForMonth(controller.patient.value.dailyTracking);
+  double avgExerciseMinutes = calculateAverageExerciseMinutes(controller.patient.value.dailyTracking);
+
+
 
     return Scaffold(
       appBar: AppBar(
@@ -40,6 +47,49 @@ class InsightScreen extends StatelessWidget {
                   const SizedBox(
                     height: kSpaceScreenPadding,
                   ),
+                  Row(children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        color: kColorPrimaryOne.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                      children: [
+                        Text('Time in bed',style: KTextTheme.lightTextTheme.labelMedium,),
+                        Text(averageSleep.toString(),style: KTextTheme.lightTextTheme.titleMedium,)
+                      ],
+                    ),),
+                    SizedBox(width: 10,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: kColorPrimaryOne.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                      children: [
+                        Text('Food Intake',style: KTextTheme.lightTextTheme.labelMedium,),
+                        Text(averageCalory.toStringAsFixed(2),style: KTextTheme.lightTextTheme.titleMedium,)
+                      ],
+                    ),),
+                    SizedBox(width: 10,),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: kColorPrimaryOne.withOpacity(0.8),
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Column(
+                      children: [
+                        Text('Avg Exercise',style: KTextTheme.lightTextTheme.labelMedium,),
+                        Text('${avgExerciseMinutes.toStringAsFixed(0)} mins',style: KTextTheme.lightTextTheme.titleMedium,)
+                      ],
+                    ),),
+                    
+
+                  ],),
+                  SizedBox(height: kSpaceScreenPadding,),
                   Text(
                     'Symptom Frequency',
                     style: TextStyle(
@@ -71,7 +121,7 @@ class InsightScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(
-                    height: kSpaceScreenPaddingLg,
+                    height: kSpaceScreenPadding,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(
@@ -86,10 +136,9 @@ class InsightScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: kSpaceScreenPadding,
-                  ),
+                  
                   BarChartSample1(),
+                  BarChartSample2()
                 ])),
       ),
     );
@@ -277,108 +326,7 @@ Widget buildSymptomFrequencyBarChart(Map<String, int> symptomFrequency) {
   );
 }
 
-Map<String, int> getSymptomFrequencyForMonth(
-    Map<String, dynamic> dailyTracking) {
-  Map<String, int> symptomFrequency = {};
 
-  DateTime now = DateTime.now();
-  int currentMonth = now.month;
-  int currentYear = now.year;
-
-  // Loop through each day of the month
-  for (int day = 1; day <= 31; day++) {
-    try {
-      // Format the date (dd-MM-yy) to match the keys in dailyTracking
-      String formattedDate = DateFormat('dd-MM-yy')
-          .format(DateTime(currentYear, currentMonth, day));
-
-      // Get the symptoms for that day (if they exist)
-      List<dynamic> dailySymptoms =
-          dailyTracking[formattedDate]?['dailySymptom'] ?? [];
-
-      // Update symptom frequency count
-      for (var symptom in dailySymptoms) {
-        String symptomName = symptom['symptom'];
-
-        if (symptomFrequency.containsKey(symptomName)) {
-          symptomFrequency[symptomName] = symptomFrequency[symptomName]! + 1;
-        } else {
-          symptomFrequency[symptomName] = 1;
-        }
-      }
-    } catch (e) {
-      // Handle days that don't exist (e.g., February 30th)
-      break;
-    }
-  }
-
-  return symptomFrequency;
-}
-
-Map<String, int> getSleepFrequencyForMonth(Map<String, dynamic> dailyTracking) {
-  Map<String, int> sleepFrequency = {};
-
-  DateTime now = DateTime.now();
-  int currentMonth = now.month;
-  int currentYear = now.year;
-
-  // Loop through each day of the month
-  for (int day = 1; day <= 31; day++) {
-    try {
-      // Format the date (dd-MM-yy) to match the keys in dailyTracking
-      String formattedDate = DateFormat('dd-MM-yy')
-          .format(DateTime(currentYear, currentMonth, day));
-
-      // Get the sleep hours for that day (if they exist)
-      int? sleepHours = dailyTracking[formattedDate]?['sleepHours'];
-
-      // Ensure sleepHours is valid and non-negative
-      if (sleepHours != null &&
-          sleepHours >= 0 &&
-          !sleepHours.isNaN &&
-          !sleepHours.isInfinite) {
-        sleepFrequency[formattedDate] = sleepHours;
-      } else {
-        sleepFrequency[formattedDate] = 0; // Default to 0 if data is invalid
-      }
-    } catch (e) {
-      // Handle invalid days (e.g., February 30th)
-      break;
-    }
-  }
-
-  return sleepFrequency;
-}
-
-Map<String, int> getSleepFrequencyForWeek(Map<String, dynamic> dailyTracking) {
-  Map<String, int> sleepFrequency = {};
-
-  DateTime now = DateTime.now();
-  DateTime startOfWeek = now
-      .subtract(Duration(days: now.weekday - 1)); // Monday of the current week
-  DateTime endOfWeek =
-      startOfWeek.add(const Duration(days: 6)); // Sunday of the current week
-
-  // Loop through each day of the week
-  for (DateTime day = startOfWeek;
-      day.isBefore(endOfWeek.add(const Duration(days: 1)));
-      day = day.add(const Duration(days: 1))) {
-    // Format the date (dd-MM-yy) to match the keys in dailyTracking
-    String formattedDate = DateFormat('dd-MM-yy').format(day);
-
-    // Get the sleep hours for that day (if they exist)
-    int? sleepHours = dailyTracking[formattedDate]?['sleepHours'];
-
-    // Ensure sleepHours is valid and non-negative
-    if (sleepHours != null && sleepHours >= 0) {
-      sleepFrequency[formattedDate] = sleepHours;
-    } else {
-      sleepFrequency[formattedDate] = 0; // Default to 0 if data is invalid
-    }
-  }
-
-  return sleepFrequency;
-}
 
 LineChartData _mainData(List<FlSpot> sleepData) {
   return LineChartData(
@@ -552,6 +500,135 @@ Map<String, int> getCaloriesForWeek(Map<String, dynamic> dailyTracking) {
   return calorieCount;
 }
 
+Map<String, int> getSymptomFrequencyForMonth(
+    Map<String, dynamic> dailyTracking) {
+  Map<String, int> symptomFrequency = {};
+
+  DateTime now = DateTime.now();
+  int currentMonth = now.month;
+  int currentYear = now.year;
+
+  // Loop through each day of the month
+  for (int day = 1; day <= 31; day++) {
+    try {
+      // Format the date (dd-MM-yy) to match the keys in dailyTracking
+      String formattedDate = DateFormat('dd-MM-yy')
+          .format(DateTime(currentYear, currentMonth, day));
+
+      // Get the symptoms for that day (if they exist)
+      List<dynamic> dailySymptoms =
+          dailyTracking[formattedDate]?['dailySymptom'] ?? [];
+
+      // Update symptom frequency count
+      for (var symptom in dailySymptoms) {
+        String symptomName = symptom['symptom'];
+
+        if (symptomFrequency.containsKey(symptomName)) {
+          symptomFrequency[symptomName] = symptomFrequency[symptomName]! + 1;
+        } else {
+          symptomFrequency[symptomName] = 1;
+        }
+      }
+    } catch (e) {
+      // Handle days that don't exist (e.g., February 30th)
+      break;
+    }
+  }
+
+  return symptomFrequency;
+}
+
+
+double calculateAverageExerciseMinutes(Map<String, dynamic> dailyTracking) {
+  Map<String, int> exerciseMinutes = getExerciseForWeek(dailyTracking);
+
+  int totalMinutes = 0;
+  int daysWithExercise = 0;
+
+  // Loop through the week's data
+  exerciseMinutes.forEach((day, minutes) {
+    if (minutes > 0) {
+      totalMinutes += minutes;
+      daysWithExercise++;
+    }
+  });
+
+  // If there are no days with exercise, return 0 to avoid division by zero
+  if (daysWithExercise == 0) {
+    return 0.0;
+  }
+
+  // Convert totalMinutes and daysWithExercise to double for floating-point division
+  double averageMinutes = totalMinutes.toDouble() / daysWithExercise.toDouble();
+
+  return averageMinutes;
+}
+
+Map<String, int> getSleepFrequencyForMonth(Map<String, dynamic> dailyTracking) {
+  Map<String, int> sleepFrequency = {};
+
+  DateTime now = DateTime.now();
+  int currentMonth = now.month;
+  int currentYear = now.year;
+
+  // Loop through each day of the month
+  for (int day = 1; day <= 31; day++) {
+    try {
+      // Format the date (dd-MM-yy) to match the keys in dailyTracking
+      String formattedDate = DateFormat('dd-MM-yy')
+          .format(DateTime(currentYear, currentMonth, day));
+
+      // Get the sleep hours for that day (if they exist)
+      int? sleepHours = dailyTracking[formattedDate]?['sleepHours'];
+
+      // Ensure sleepHours is valid and non-negative
+      if (sleepHours != null &&
+          sleepHours >= 0 &&
+          !sleepHours.isNaN &&
+          !sleepHours.isInfinite) {
+        sleepFrequency[formattedDate] = sleepHours;
+      } else {
+        sleepFrequency[formattedDate] = 0; // Default to 0 if data is invalid
+      }
+    } catch (e) {
+      // Handle invalid days (e.g., February 30th)
+      break;
+    }
+  }
+
+  return sleepFrequency;
+}
+
+Map<String, int> getSleepFrequencyForWeek(Map<String, dynamic> dailyTracking) {
+  Map<String, int> sleepFrequency = {};
+
+  DateTime now = DateTime.now();
+  DateTime startOfWeek = now
+      .subtract(Duration(days: now.weekday - 1)); // Monday of the current week
+  DateTime endOfWeek =
+      startOfWeek.add(const Duration(days: 6)); // Sunday of the current week
+
+  // Loop through each day of the week
+  for (DateTime day = startOfWeek;
+      day.isBefore(endOfWeek.add(const Duration(days: 1)));
+      day = day.add(const Duration(days: 1))) {
+    // Format the date (dd-MM-yy) to match the keys in dailyTracking
+    String formattedDate = DateFormat('dd-MM-yy').format(day);
+
+    // Get the sleep hours for that day (if they exist)
+    int? sleepHours = dailyTracking[formattedDate]?['sleepHours'];
+
+    // Ensure sleepHours is valid and non-negative
+    if (sleepHours != null && sleepHours >= 0) {
+      sleepFrequency[formattedDate] = sleepHours;
+    } else {
+      sleepFrequency[formattedDate] = 0; // Default to 0 if data is invalid
+    }
+  }
+
+  return sleepFrequency;
+}
+
 class BarChartSample1 extends StatelessWidget {
   BarChartSample1({super.key});
 
@@ -562,7 +639,7 @@ class BarChartSample1 extends StatelessWidget {
 
   final Color barBackgroundColor = Colors.pink.withOpacity(0.3);
   final Color barColor = Colors.pink;
-  final Color touchedBarColor = Colors.deepOrange;
+  final Color touchedBarColor = const Color.fromARGB(255, 139, 75, 55);
 
   @override
   Widget build(BuildContext context) {
@@ -783,3 +860,58 @@ class BarChartSample1 extends StatelessWidget {
     );
   }
 }
+
+double getAverageCaloriesForWeek(Map<String, dynamic> dailyTracking) {
+  Map<String, int> calorieCount = getCaloriesForWeek(dailyTracking);
+  
+  int totalCalories = calorieCount.values.fold(0, (sum, calories) => sum + calories);
+  int daysWithCalories = calorieCount.length; // Count days with valid calorie data
+  
+  return daysWithCalories > 0 ? totalCalories / daysWithCalories : 0.0;
+}
+
+// Method to calculate the average sleep for the week
+double getAverageSleepForWeek(Map<String, dynamic> dailyTracking) {
+  DateTime now = DateTime.now();
+  DateTime startOfWeek = now.subtract(Duration(days: now.weekday - 1)); // Monday
+  DateTime endOfWeek = startOfWeek.add(Duration(days: 6)); // Sunday
+
+  int totalSleepHours = 0;
+  int daysWithSleepData = 0;
+
+  for (DateTime day = startOfWeek;
+      day.isBefore(endOfWeek.add(Duration(days: 1)));
+      day = day.add(Duration(days: 1))) {
+    String formattedDate = DateFormat('dd-MM-yy').format(day);
+    int? sleepHours = dailyTracking[formattedDate]?['sleepHours'];
+
+    if (sleepHours != null && sleepHours >= 0) {
+      totalSleepHours += sleepHours;
+      daysWithSleepData++;
+    }
+  }
+
+  return daysWithSleepData > 0 ? totalSleepHours / daysWithSleepData : 0.0;
+}
+
+// Method to find the symptom with the highest frequency for the month
+String getHighestSymptomFrequencyForMonth(Map<String, dynamic> dailyTracking) {
+  Map<String, int> symptomFrequency = getSymptomFrequencyForMonth(dailyTracking);
+
+  if (symptomFrequency.isEmpty) return "No symptoms";
+
+  // Find the symptom with the highest frequency
+  String highestSymptom = symptomFrequency.keys.first;
+  int highestCount = symptomFrequency[highestSymptom]!;
+
+  symptomFrequency.forEach((symptom, count) {
+    if (count > highestCount) {
+      highestSymptom = symptom;
+      highestCount = count;
+    }
+  });
+
+  return highestSymptom;
+}
+
+

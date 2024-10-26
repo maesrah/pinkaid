@@ -29,35 +29,45 @@ class UserRepository extends GetxController {
           .collection("Users")
           .doc(user.id)
           .set(user.toJson());
-      if(user.role==UserRole.doctor){
+      if (user.role == UserRole.doctor) {
         final doctor = Doctor(
-          id: user.id, 
-          phoneNumber: user.phoneNumber, 
-          profilePicture: user.profilePicture, 
-          fullName: user.fullName, 
-          position: '', 
-          workExperience: '', 
-          hospitalWork: '', 
-          profImage: user.profilePicture,
-          blockedDates: []);
-            
-       //Doctor doctor=Doctor.empty();
+            id: user.id,
+            phoneNumber: user.phoneNumber,
+            profilePicture: user.profilePicture,
+            fullName: user.fullName,
+            position: '',
+            workExperience: '',
+            hospitalWork: '',
+            profImage:
+                'https://firebasestorage.googleapis.com/v0/b/pinkaid.appspot.com/o/Users%2FImages%2FProfile%2Fuser.png?alt=media&token=fddac1bd-4228-41be-b519-afbf00d214ad',
+            blockedDates: []);
+
+        //Doctor doctor=Doctor.empty();
         await _firebaseFirestore
-          .collection("Doctors")
-          .doc(user.id)
-          .set(doctor.toJson());
+            .collection("Doctors")
+            .doc(user.id)
+            .set(doctor.toJson());
+      } else {
+        final patient = Patient(
+            id: user.id,
+            name: user.fullName,
+            phoneNumber: user.phoneNumber,
+            profilePicture:
+                'https://firebasestorage.googleapis.com/v0/b/pinkaid.appspot.com/o/Users%2FImages%2FProfile%2Fuser.png?alt=media&token=fddac1bd-4228-41be-b519-afbf00d214ad',
+            medicalHistory: {},
+            medication: [],
+            weight: 0,
+            height: 0,
+            dailySleepHours: 0,
+            dailyTracking: {},
+            streakCount: 0,
+            lastActiveDate: DateTime.now());
 
-      }else{
-        Patient patient=Patient.empty();
         await _firebaseFirestore
-          .collection("Patients")
-          .doc(user.id)
-          .set(patient.toJson());
-
-
+            .collection("Patients")
+            .doc(user.id)
+            .set(patient.toJson());
       }
-      
-      
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;
     } on FormatException catch (_) {

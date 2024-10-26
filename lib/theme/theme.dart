@@ -23,7 +23,8 @@ const kColorStandardBlue = Color(0xFF33b5e5);
 
 const kPrimaryFont = 'Poppins';
 // String get kMonospaceFont => Platform.isIOS ? 'Courier' : 'monospace';
-
+const Color kColorPrimaryOne = Color(0xffFF5580);
+const Color kColorDeepPurple = Color(0xff982176);
 const Color kColorPrimaryDark = kColorDarkOrange900;
 const Color kColorPrimary = Color(0xFFF12B6B);
 const Color kColorPrime = Color(0xfffFFDBA);

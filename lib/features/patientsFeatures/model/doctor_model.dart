@@ -25,7 +25,8 @@ class Doctor extends UserModel{
     
   }): super(
           fullName: fullName,
-          role: UserRole.patient,
+          role: UserRole.doctor,
+          fillForm: true
         );
 
 

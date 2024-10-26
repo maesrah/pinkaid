@@ -3,6 +3,7 @@ import 'package:pinkaid/features/patientsFeatures/model/category_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/doctor_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/meal_model.dart';
 import 'package:pinkaid/features/patientsFeatures/model/post_model.dart';
+import 'package:pinkaid/features/patientsFeatures/model/quiz_model.dart';
 
 class KDummyData {
   static final List<CategoryModel> categories = [
@@ -226,6 +227,53 @@ static final List<Meal> dummyMeals = [
   Meal(id: '24', mealName: 'Roasted Vegetables', nutrient: 22, calories: 200),
   Meal(id: '25', mealName: 'Fruit Salad', nutrient: 12, calories: 150),
 ];
+
+static List<Quiz> dummyQuizzes = [
+  // Text-based quiz
+  Quiz(
+    quizId: "quiz_bc_001",
+    question: "A screening method for breast cancer",
+    options: [],
+    correctAnswer: "Mammo",
+    imageUrl: null,
+    categoryId: "breast_cancer",
+    letters: ["M", "A", "M", "M", "O"],
+    dateCreated: Timestamp.now()
+  ),
+  Quiz(
+    quizId: "quiz_bc_001",
+    question: "A screening method for breast cancer",
+    options: ["Scan", "Mammo", "X-ray", "Blood"],
+    correctAnswer: "Mammo",
+    imageUrl: null,
+    categoryId: "breast_cancer",
+    letters: ["M", "A", "M", "M", "O"],
+    dateCreated: Timestamp.now()
+  ),
+  Quiz(
+    quizId: "quiz_bc_003",
+    question: "A type of breast cancer treatment",
+    options: ["Chemo", "Laser", "Drugs", "Probe"],
+    correctAnswer: "Chemo",
+    imageUrl: null,
+    categoryId: "breast_cancer",
+    letters: ["C", "H", "E", "M", "O"],
+    dateCreated: Timestamp.now()
+  ),
+  Quiz(
+     quizId: "quiz_bc_004",
+    question: "A gene mutation linked to breast cancer",
+    options: ["BRCA1", "XRAY1", "CLONE", "DNA45"],
+    correctAnswer: "BRCA1",
+    imageUrl: null,
+    categoryId: "breast_cancer",
+    letters: ["B", "R", "C", "A", "1"],
+    dateCreated: Timestamp.now()
+  ),
+
+
+];
+
 
 }
 
